@@ -1,0 +1,118 @@
+/* ============================================
+   UNOAVENTI — portfolio.css
+   ============================================ */
+
+.portfolio-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1.5px solid var(--inchiostro);
+}
+
+.portfolio-header-left {
+  padding: 72px 48px 72px 32px;
+  border-right: 1px solid var(--carta-mid);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.portfolio-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 9vw, 110px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--inchiostro);
+  margin-bottom: 16px;
+}
+
+.portfolio-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--inchiostro2);
+  opacity: 0.5;
+}
+
+.portfolio-header-right {
+  padding: 72px 32px 72px 48px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.portfolio-intro {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--inchiostro2);
+  max-width: 480px;
+}
+
+/* ---- FILTRI ---- */
+.portfolio-filtri {
+  display: flex;
+  gap: 0;
+  border-bottom: 1.5px solid var(--inchiostro);
+  overflow-x: auto;
+}
+
+.filtro-btn {
+  padding: 16px 28px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--inchiostro2);
+  border: none;
+  border-right: 1px solid var(--carta-mid);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  position: relative;
+}
+
+.filtro-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--cmyk-m);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.filtro-btn:hover { background: var(--carta-dark); color: var(--inchiostro); }
+.filtro-btn.active { color: var(--inchiostro); }
+.filtro-btn.active::after { transform: scaleX(1); }
+
+/* ---- GRIGLIA ---- */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: none;
+}
+
+.portfolio-grid .project-card {
+  border-right: 1px solid var(--carta-mid);
+  border-bottom: 1px solid var(--carta-mid);
+}
+
+.portfolio-grid .project-card:nth-child(3n) {
+  border-right: none;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .portfolio-header { grid-template-columns: 1fr; }
+  .portfolio-header-left { border-right: none; border-bottom: 1px solid var(--carta-mid); padding: 48px 24px; }
+  .portfolio-header-right { padding: 40px 24px; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid .project-card:nth-child(3n) { border-right: 1px solid var(--carta-mid); }
+  .portfolio-grid .project-card:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-grid .project-card { border-right: none; }
+}

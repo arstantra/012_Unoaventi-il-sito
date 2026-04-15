@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio di Unoaventi Design Studio — Andrea Poletti. Allestimenti fieristici, interior design, arredo urbano. Dal 2006.">
+  <title>Portfolio — Unoaventi Design Studio · Andrea Poletti</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGAZIONE ========== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="nav-studio">Unoaventi Design Studio</span>
+        <span class="nav-name">Andrea Poletti</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
+
+  <!-- ========== TESTATA ========== -->
+  <header class="portfolio-header">
+    <div class="portfolio-header-left">
+      <div class="hero-eyebrow-line" style="margin-bottom:20px;"></div>
+      <h1 class="portfolio-title">I <span style="color:var(--cmyk-m);">Progetti</span></h1>
+      <p class="portfolio-sub">10 lavori · Dal 2007 ad oggi · Scala 1:20</p>
+    </div>
+    <div class="portfolio-header-right">
+      <p class="portfolio-intro">
+        Allestimenti fieristici che esistono per tre giorni e lasciano una traccia permanente.
+        Interni abitati da persone vere. Oggetti urbani con brevetto depositato.
+        Visioni che aspettano ancora di essere costruite.
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== FILTRI ========== -->
+  <div class="portfolio-filtri">
+    <button class="filtro-btn active" data-filtro="tutti">Tutti</button>
+    <button class="filtro-btn" data-filtro="fiera">Allestimenti fieristici</button>
+    <button class="filtro-btn" data-filtro="interni">Interior design</button>
+    <button class="filtro-btn" data-filtro="urbano">Arredo urbano</button>
+  </div>
+
+  <!-- ========== GRIGLIA PROGETTI ========== -->
+  <div class="portfolio-grid" id="portfolio-grid">
+
+    <!-- SANA 2023 -->
+    <a href="progetto-sana-2023.html" class="project-card" data-cat="fiera">
+      <div class="project-card-img pat-dots">
+        <div class="project-card-img-bar" style="background:var(--cmyk-c);"></div>
+        <img src="img/progetti/sana-2023-render.webp" alt="SANA 2023" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2023</span>
+        <h3 class="project-card-title">SANA 2023</h3>
+        <p class="project-card-desc">L'ultima edizione. Uno stand discreto dopo il Covid — e un commiato silenzioso a una manifestazione storica.</p>
+        <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+      </div>
+    </a>
+
+    <!-- SANA 2022 -->
+    <a href="progetto-sana-2022.html" class="project-card" data-cat="fiera">
+      <div class="project-card-img pat-lines">
+        <div class="project-card-img-bar" style="background:var(--cmyk-m);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2022</span>
+        <h3 class="project-card-title">SANA 2022</h3>
+        <p class="project-card-desc">Salone Internazionale del Biologico e del Naturale. BolognaFiere.</p>
+        <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+      </div>
+    </a>
+
+    <!-- Ingresso e Libreria Ferrara -->
+    <a href="progetto-ingresso-libreria-ferrara.html" class="project-card" data-cat="interni">
+      <div class="project-card-img pat-grid">
+        <div class="project-card-img-bar" style="background:var(--c-yel-dark);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2022</span>
+        <h3 class="project-card-title">Ingresso e Libreria — Ferrara</h3>
+        <p class="project-card-desc">Interior design per ingresso e libreria in abitazione nel centro storico di Ferrara.</p>
+        <span class="project-card-cat cat-interni">Interior design</span>
+      </div>
+    </a>
+
+    <!-- Bagno Ferrara -->
+    <a href="progetto-bagno-ferrara.html" class="project-card" data-cat="interni">
+      <div class="project-card-img pat-dots">
+        <div class="project-card-img-bar" style="background:var(--cmyk-m);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2021</span>
+        <h3 class="project-card-title">Bagno — Ferrara</h3>
+        <p class="project-card-desc">Ristrutturazione bagno in abitazione nel centro storico di Ferrara.</p>
+        <span class="project-card-cat cat-interni">Interior design</span>
+      </div>
+    </a>
+
+    <!-- SANA 2020 -->
+    <a href="progetto-sana-2020.html" class="project-card" data-cat="fiera">
+      <div class="project-card-img pat-lines">
+        <div class="project-card-img-bar" style="background:var(--cmyk-c);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2020</span>
+        <h3 class="project-card-title">SANA 2020</h3>
+        <p class="project-card-desc">Salone Internazionale del Biologico e del Naturale. BolognaFiere.</p>
+        <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+      </div>
+    </a>
+
+    <!-- COSMOPROF 2019 -->
+    <a href="progetto-cosmoprof-2019.html" class="project-card" data-cat="fiera">
+      <div class="project-card-img pat-grid">
+        <div class="project-card-img-bar" style="background:var(--cmyk-m);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2019</span>
+        <h3 class="project-card-title">COSMOPROF 2019</h3>
+        <p class="project-card-desc">Allestimento fieristico per Cosmoprof Worldwide. Bologna.</p>
+        <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+      </div>
+    </a>
+
+    <!-- SANA 2018 -->
+    <a href="progetto-sana-2018.html" class="project-card" data-cat="fiera">
+      <div class="project-card-img pat-dots">
+        <div class="project-card-img-bar" style="background:var(--cmyk-c);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2018</span>
+        <h3 class="project-card-title">SANA 2018</h3>
+        <p class="project-card-desc">Salone Internazionale del Biologico e del Naturale. BolognaFiere.</p>
+        <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+      </div>
+    </a>
+
+    <!-- Vitty's Store -->
+    <a href="progetto-vitty-store.html" class="project-card" data-cat="interni">
+      <div class="project-card-img pat-lines">
+        <div class="project-card-img-bar" style="background:var(--cmyk-m);"></div>
+        <span class="project-card-img-label">[ foto ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2011</span>
+        <h3 class="project-card-title">Vitty's Store</h3>
+        <p class="project-card-desc">Interior design per negozio di abbigliamento.</p>
+        <span class="project-card-cat cat-interni">Interior design</span>
+      </div>
+    </a>
+
+    <!-- Casa nel Parco -->
+    <a href="progetto-casa-nel-parco.html" class="project-card" data-cat="interni">
+      <div class="project-card-img pat-grid">
+        <div class="project-card-img-bar" style="background:var(--c-yel-dark);"></div>
+        <span class="project-card-img-label">[ render ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2010</span>
+        <h3 class="project-card-title">Concorso: La casa nel parco</h3>
+        <p class="project-card-desc">Progetto di concorso per interior design residenziale.</p>
+        <span class="project-card-cat cat-interni">Interior design</span>
+      </div>
+    </a>
+
+    <!-- Impianti pubblicità esterna -->
+    <a href="progetto-impianti-pubblicita.html" class="project-card" data-cat="urbano">
+      <div class="project-card-img pat-dots">
+        <div class="project-card-img-bar" style="background:var(--inchiostro);"></div>
+        <span class="project-card-img-label">[ render ]</span>
+      </div>
+      <div class="project-card-body">
+        <span class="project-card-year">2007</span>
+        <h3 class="project-card-title">Impianti per Pubblicità Esterna</h3>
+        <p class="project-card-desc">Design di prodotto e arredo urbano per il Comune di Ferrara. Brevetto depositato.</p>
+        <span class="project-card-cat cat-urbano">Arredo urbano</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-studio">Unoaventi Design Studio · Andrea Poletti</span>
+      <span class="footer-copy">© 2024 · unoaventi.it · Scala 1:20</span>
+    </div>
+    <div class="footer-dots">
+      <div class="footer-dot" style="background:var(--cmyk-c);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-m);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-y);"></div>
+      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>
+    </div>
+    <div class="footer-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* Filtri portfolio */
+    const btns = document.querySelectorAll('.filtro-btn');
+    const cards = document.querySelectorAll('.project-card[data-cat]');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filtro;
+        cards.forEach(card => {
+          card.style.display = (f === 'tutti' || card.dataset.cat === f) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
