@@ -178,16 +178,39 @@
   align-self: flex-start;
 }
 
-/* ---- GALLERIA ---- */
-/*
-  Logica immagini:
-  - 1 immagine  → full width
-  - 2 immagini  → affiancate 50/50
-  - 3 immagini  → prima full width, due sotto affiancate
-  - 4 immagini  → griglia 2x2
-  - 5 immagini  → prima full width, quattro sotto in 2x2
-  Usa le classi galleria-1 … galleria-5 sul div .progetto-galleria
-*/
+/* ============================================================
+   GALLERIA IMMAGINI
+   ============================================================
+
+   COME SI USA — due informazioni sul div .progetto-galleria:
+
+   1) QUANTE IMMAGINI hai (escludendo la cover):
+      galleria-1  →  1 immagine  full width
+      galleria-2  →  2 immagini
+      galleria-3  →  3 immagini
+      galleria-4  →  4 immagini
+      galleria-5  →  5 immagini
+
+   2) CHE FORMATO hanno le immagini:
+      (niente)    →  tutte orizzontali  [default]
+      mix-v       →  miste orizzontali e verticali
+      tutte-v     →  tutte verticali (ritratto)
+
+   Esempi combinati:
+      class="progetto-galleria galleria-3"
+        → 3 immagini tutte orizzontali
+
+      class="progetto-galleria galleria-3 mix-v"
+        → 3 immagini, alcune verticali
+
+      class="progetto-galleria galleria-2 tutte-v"
+        → 2 immagini verticali affiancate
+
+   PROPORZIONI CONSIGLIATE per Squoosh:
+      Orizzontale  →  1200 × 800 px  (3:2)
+      Verticale    →  800 × 1100 px  (circa 3:4)
+      Cover        →  1400 × 800 px  (16:9 o simile)
+   ============================================================ */
 
 .progetto-galleria {
   border-bottom: 1.5px solid var(--inchiostro);
@@ -197,9 +220,14 @@
   padding: 0;
 }
 
+/* ---- BASE: tutte orizzontali ---- */
+
 /* 1 immagine */
 .progetto-galleria.galleria-1 {
   grid-template-columns: 1fr;
+}
+.progetto-galleria.galleria-1 .galleria-item {
+  min-height: 520px;
 }
 
 /* 2 immagini — affiancate */
@@ -215,12 +243,12 @@
   grid-column: 1 / -1;
 }
 
-/* 4 immagini — 2x2 */
+/* 4 immagini — griglia 2×2 */
 .progetto-galleria.galleria-4 {
   grid-template-columns: 1fr 1fr;
 }
 
-/* 5 immagini — prima wide, quattro in 2x2 */
+/* 5 immagini — prima wide, poi 2×2 */
 .progetto-galleria.galleria-5 {
   grid-template-columns: 1fr 1fr;
 }
@@ -228,14 +256,49 @@
   grid-column: 1 / -1;
 }
 
-/* Fallback senza classe numerica */
-.progetto-galleria:not([class*="galleria-"]) {
-  grid-template-columns: 1fr 1fr;
+/* ---- VARIANTE: miste orizzontali + verticali (mix-v) ----
+   Le verticali occupano 1 colonna stretta (2fr vs 3fr).
+   Metti la/e verticale/i per ultima/e nel markup HTML.      */
+
+.progetto-galleria.galleria-2.mix-v {
+  grid-template-columns: 3fr 2fr;
 }
-.progetto-galleria:not([class*="galleria-"]) .galleria-item:first-child {
+
+.progetto-galleria.galleria-3.mix-v {
+  grid-template-columns: 3fr 2fr;
+}
+.progetto-galleria.galleria-3.mix-v .galleria-item:first-child {
   grid-column: 1 / -1;
 }
 
+.progetto-galleria.galleria-4.mix-v {
+  grid-template-columns: 3fr 2fr;
+}
+/* prima riga: orizzontale wide + verticale */
+.progetto-galleria.galleria-4.mix-v .galleria-item:nth-child(1) { grid-column: 1; }
+.progetto-galleria.galleria-4.mix-v .galleria-item:nth-child(2) { grid-row: 1 / 3; grid-column: 2; }
+/* seconda riga: due orizzontali sotto */
+.progetto-galleria.galleria-4.mix-v .galleria-item:nth-child(3) { grid-column: 1; }
+.progetto-galleria.galleria-4.mix-v .galleria-item:nth-child(4) { grid-column: 1; }
+
+.progetto-galleria.galleria-5.mix-v {
+  grid-template-columns: 3fr 2fr;
+}
+.progetto-galleria.galleria-5.mix-v .galleria-item:first-child {
+  grid-column: 1 / -1;
+}
+
+/* ---- VARIANTE: tutte verticali (tutte-v) ----
+   3 colonne strette per non avere barre altissime         */
+
+.progetto-galleria.galleria-2.tutte-v  { grid-template-columns: 1fr 1fr; }
+.progetto-galleria.galleria-3.tutte-v  { grid-template-columns: repeat(3, 1fr); }
+.progetto-galleria.galleria-3.tutte-v .galleria-item:first-child { grid-column: auto; }
+.progetto-galleria.galleria-4.tutte-v  { grid-template-columns: repeat(4, 1fr); }
+.progetto-galleria.galleria-5.tutte-v  { grid-template-columns: repeat(3, 1fr); }
+.progetto-galleria.galleria-5.tutte-v .galleria-item:first-child { grid-column: auto; }
+
+/* ---- ITEM BASE ---- */
 .galleria-item {
   overflow: hidden;
   background: var(--carta);
@@ -243,18 +306,20 @@
   min-height: 260px;
 }
 
+/* Le verticali devono essere più alte per mostrare il soggetto */
+.tutte-v .galleria-item,
+.mix-v .galleria-item.v {
+  min-height: 400px;
+}
+
 .galleria-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
   transition: transform 0.4s ease;
-  min-height: 260px;
-}
-
-.progetto-galleria.galleria-1 .galleria-item,
-.progetto-galleria.galleria-1 .galleria-item img {
-  min-height: 480px;
+  min-height: inherit;
 }
 
 .galleria-item:hover img { transform: scale(1.02); }
@@ -268,7 +333,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--carta);
-  background: linear-gradient(to top, rgba(26,22,18,0.6) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(26,22,18,0.65) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.3s;
 }
