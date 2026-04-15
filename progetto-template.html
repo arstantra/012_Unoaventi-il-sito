@@ -151,27 +151,33 @@
   </div>
 
   <!-- ========== GALLERIA IMMAGINI ========== -->
-  <div class="progetto-galleria">
+  <!--
+    [MODIFICA] Conta le immagini che hai e scegli la classe giusta:
+    - 1 immagine  → class="progetto-galleria galleria-1"  (full width)
+    - 2 immagini  → class="progetto-galleria galleria-2"  (affiancate)
+    - 3 immagini  → class="progetto-galleria galleria-3"  (1 wide + 2 sotto)
+    - 4 immagini  → class="progetto-galleria galleria-4"  (griglia 2x2)
+    - 5 immagini  → class="progetto-galleria galleria-5"  (1 wide + 4 in 2x2)
+    NON mettere la cover qui — quella è già sopra nel progetto-cover.
+  -->
+  <div class="progetto-galleria galleria-2">
 
-    <!-- [MODIFICA] Aggiungi o rimuovi blocchi <figure> per ogni immagine.
-         Formato: img/progetti/nome-progetto/01.jpg
-         Risoluzione: 1000px larghezza, JPG 75%, max 150kb (usa Squoosh)
-         La didascalia <figcaption> è opzionale — cancellala se non serve. -->
+    <!-- [MODIFICA] Aggiungi o rimuovi blocchi <figure> — uno per immagine.
+         Percorso: img/progetti/nome-progetto/01.jpg
+         Risoluzione: 1000px larghezza, JPG 75%, max 150kb (Squoosh)
+         La didascalia appare al passaggio del mouse — scrivila sempre. -->
 
     <figure class="galleria-item">
       <img src="img/progetti/nome-progetto/01.jpg" alt="Descrizione immagine 1">
-      <figcaption>Didascalia opzionale</figcaption>
+      <figcaption>Descrizione per il mouse-over</figcaption>
     </figure>
 
     <figure class="galleria-item">
       <img src="img/progetti/nome-progetto/02.jpg" alt="Descrizione immagine 2">
+      <figcaption>Descrizione per il mouse-over</figcaption>
     </figure>
 
-    <figure class="galleria-item">
-      <img src="img/progetti/nome-progetto/03.jpg" alt="Descrizione immagine 3">
-    </figure>
-
-    <!-- Aggiungi altri <figure> qui se hai più immagini -->
+    <!-- Aggiungi altri <figure> qui e aggiorna la classe galleria-N -->
 
   </div>
 

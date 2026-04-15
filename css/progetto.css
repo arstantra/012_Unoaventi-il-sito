@@ -179,23 +179,68 @@
 }
 
 /* ---- GALLERIA ---- */
+/*
+  Logica immagini:
+  - 1 immagine  → full width
+  - 2 immagini  → affiancate 50/50
+  - 3 immagini  → prima full width, due sotto affiancate
+  - 4 immagini  → griglia 2x2
+  - 5 immagini  → prima full width, quattro sotto in 2x2
+  Usa le classi galleria-1 … galleria-5 sul div .progetto-galleria
+*/
+
 .progetto-galleria {
-  padding: 48px 32px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
   border-bottom: 1.5px solid var(--inchiostro);
   background: var(--carta-dark);
+  display: grid;
+  gap: 3px;
+  padding: 0;
+}
+
+/* 1 immagine */
+.progetto-galleria.galleria-1 {
+  grid-template-columns: 1fr;
+}
+
+/* 2 immagini — affiancate */
+.progetto-galleria.galleria-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 3 immagini — prima wide, due sotto */
+.progetto-galleria.galleria-3 {
+  grid-template-columns: 1fr 1fr;
+}
+.progetto-galleria.galleria-3 .galleria-item:first-child {
+  grid-column: 1 / -1;
+}
+
+/* 4 immagini — 2x2 */
+.progetto-galleria.galleria-4 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 5 immagini — prima wide, quattro in 2x2 */
+.progetto-galleria.galleria-5 {
+  grid-template-columns: 1fr 1fr;
+}
+.progetto-galleria.galleria-5 .galleria-item:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Fallback senza classe numerica */
+.progetto-galleria:not([class*="galleria-"]) {
+  grid-template-columns: 1fr 1fr;
+}
+.progetto-galleria:not([class*="galleria-"]) .galleria-item:first-child {
+  grid-column: 1 / -1;
 }
 
 .galleria-item {
   overflow: hidden;
   background: var(--carta);
   position: relative;
-}
-
-.galleria-item--wide {
-  grid-column: 1 / -1;
+  min-height: 260px;
 }
 
 .galleria-item img {
@@ -204,20 +249,31 @@
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
+  min-height: 260px;
+}
+
+.progetto-galleria.galleria-1 .galleria-item,
+.progetto-galleria.galleria-1 .galleria-item img {
+  min-height: 480px;
 }
 
 .galleria-item:hover img { transform: scale(1.02); }
 
 .galleria-item figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
   padding: 10px 14px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--inchiostro2);
-  opacity: 0.5;
-  background: var(--carta);
+  color: var(--carta);
+  background: linear-gradient(to top, rgba(26,22,18,0.6) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
+
+.galleria-item:hover figcaption { opacity: 1; }
 
 /* ---- NAVIGAZIONE PROGETTI ---- */
 .progetto-nav {
