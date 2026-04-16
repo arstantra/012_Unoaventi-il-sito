@@ -328,3 +328,46 @@
   .blog-card-leggi { display: none; }
   .blog-title { font-size: 72px; }
 }
+
+/* ---- VIDEO YOUTUBE ---- */
+/*
+  Uso nel template:
+  <div class="articolo-video">
+    <iframe
+      src="https://www.youtube.com/embed/ID_VIDEO"
+      title="Titolo del video"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  Opzionale — didascalia sotto il video:
+  <p class="articolo-video-caption">Testo didascalia</p>
+*/
+
+.articolo-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  border: 1.5px solid var(--inchiostro);
+  background: var(--inchiostro);
+}
+
+.articolo-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.articolo-video-caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--inchiostro2);
+  opacity: 0.45;
+  margin-top: 10px;
+}
