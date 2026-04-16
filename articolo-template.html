@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [MODIFICA] Descrizione per i motori di ricerca — max 155 caratteri -->
+  <meta name="description" content="Titolo articolo — Andrea Poletti, Unoaventi Design Studio.">
+  <!-- [MODIFICA] Titolo nella scheda del browser -->
+  <title>Titolo articolo — Blog · Unoaventi Design Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="nav-studio">Unoaventi Design Studio</span>
+        <span class="nav-name">Andrea Poletti</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="progetto-breadcrumb">
+    <a href="blog.html">← Blog</a>
+    <!-- [MODIFICA] Categoria -->
+    <span class="tag tag-m" style="font-size:10px; padding:4px 10px;">Categoria</span>
+  </div>
+
+  <!-- ========== TESTATA ARTICOLO ========== -->
+  <header class="articolo-header">
+    <div class="articolo-header-meta">
+      <!-- [MODIFICA] Data: es. 15 Marzo 2025 -->
+      <span class="articolo-data mono">Data</span>
+      <span class="articolo-lettura mono">
+        <!-- [MODIFICA] Stima minuti di lettura: conta ~200 parole/minuto -->
+        5 min di lettura
+      </span>
+    </div>
+    <!-- [MODIFICA] Titolo principale dell'articolo -->
+    <h1 class="articolo-titolo">Titolo dell'articolo</h1>
+    <!-- [MODIFICA] Occhiello — frase di apertura, massimo 2 righe -->
+    <p class="articolo-occhiello">
+      Frase di apertura che introduce il tema. Può essere una domanda, 
+      una provocazione, un'affermazione netta.
+    </p>
+  </header>
+
+  <!-- ========== CORPO ARTICOLO ========== -->
+  <div class="articolo-body">
+    <div class="articolo-testo">
+
+      <!--
+        ISTRUZIONI TESTO
+        ================
+        Usa questi elementi:
+        <p>          → paragrafo normale
+        <h2>         → titolo di sezione
+        <h3>         → sottotitolo
+        <em>         → corsivo (enfasi)
+        <strong>     → grassetto (parola chiave)
+        <blockquote> → citazione in evidenza
+        <ul><li>     → lista puntata
+
+        Esempio blockquote:
+        <blockquote>
+          "Una frase memorabile che vale la pena isolare."
+        </blockquote>
+      -->
+
+      <!-- [MODIFICA] Scrivi qui il tuo articolo -->
+      <p>
+        Primo paragrafo. Introduci il tema in modo diretto — senza preamboli, 
+        senza "in questo articolo parlerò di". Inizia dalla cosa più interessante.
+      </p>
+
+      <h2>Primo titolo di sezione</h2>
+
+      <p>
+        Secondo paragrafo. Sviluppa il primo punto.
+      </p>
+
+      <blockquote>
+        "Una citazione se ce l'hai, o un'affermazione che vale la pena isolare."
+      </blockquote>
+
+      <p>
+        Terzo paragrafo. Continua.
+      </p>
+
+      <h2>Secondo titolo di sezione</h2>
+
+      <p>
+        Quarto paragrafo.
+      </p>
+
+      <p>
+        Conclusione. Non serve una conclusione formale — puoi finire con 
+        una domanda aperta o un'osservazione secca.
+      </p>
+
+    </div>
+
+    <!-- Sidebar con info autore -->
+    <aside class="articolo-aside">
+      <div class="articolo-autore">
+        <img src="img/andrea-poletti.jpg" alt="Andrea Poletti" class="articolo-autore-foto">
+        <div>
+          <div class="articolo-autore-nome">Andrea Poletti</div>
+          <div class="articolo-autore-ruolo mono">Progettista · Docente</div>
+        </div>
+      </div>
+      <!-- [MODIFICA] Aggiungi qui link a progetti correlati se pertinente -->
+      <!--
+      <div class="articolo-correlati">
+        <div class="mono" style="font-size:9px; opacity:0.4; letter-spacing:0.2em; margin-bottom:12px;">Progetti correlati</div>
+        <a href="progetto-sana-2018.html" class="articolo-correlato-link">
+          SANA 2018 →
+        </a>
+      </div>
+      -->
+    </aside>
+
+  </div>
+
+  <!-- Navigazione articoli -->
+  <nav class="progetto-nav">
+    <!-- [MODIFICA] Articolo precedente — cancella se non c'è -->
+    <a href="blog.html" class="progetto-nav-prev">
+      <span class="mono">← Tutti gli articoli</span>
+      <span class="progetto-nav-title">Blog</span>
+    </a>
+    <!-- [MODIFICA] Articolo successivo — cancella se non c'è -->
+    <a href="portfolio.html" class="progetto-nav-next">
+      <span class="mono">Vedi anche →</span>
+      <span class="progetto-nav-title">Portfolio</span>
+    </a>
+  </nav>
+
+  <footer>
+    <div class="footer-left">
+      <span class="footer-studio">Unoaventi Design Studio · Andrea Poletti</span>
+      <span class="footer-copy">© 2024 · unoaventi.it · Scala 1:20</span>
+    </div>
+    <div class="footer-dots">
+      <div class="footer-dot" style="background:var(--cmyk-c);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-m);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-y);"></div>
+      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>
+    </div>
+    <div class="footer-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
