@@ -1,0 +1,244 @@
+/* ============================================
+   UNOAVENTI — fixes.css
+   1. Video YouTube responsive (fix desktop)
+   2. Hamburger menu mobile
+   3. Lightbox galleria immagini
+   ============================================ */
+
+
+/* ============================================
+   1. FIX VIDEO YOUTUBE DESKTOP
+   ============================================ */
+
+.articolo-video {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  aspect-ratio: 16 / 9;
+  padding-bottom: 0;   /* sovrascrive il vecchio trick */
+  height: auto;
+  overflow: hidden;
+  border: 1.5px solid var(--inchiostro);
+  background: var(--inchiostro);
+}
+
+.articolo-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* ============================================
+   2. HAMBURGER MENU MOBILE
+   ============================================ */
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.ham-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--inchiostro);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.nav-hamburger.is-open .ham-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.is-open .ham-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger.is-open .ham-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* Sovrascrive il display:none già in style.css */
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-links--open {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--carta);
+    border-bottom: 1.5px solid var(--inchiostro);
+    z-index: 200;
+    animation: menu-slide-in 0.2s ease;
+  }
+
+  .nav-links--open a {
+    border-left: none;
+    border-top: 1px solid var(--carta-mid);
+    padding: 18px 24px;
+    font-size: 13px;
+    justify-content: flex-start;
+  }
+
+  .nav-links--open a::after {
+    bottom: 0;
+    height: 2px;
+  }
+}
+
+@keyframes menu-slide-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================
+   3. LIGHTBOX GALLERIA IMMAGINI
+   ============================================ */
+
+/* Overlay — nascosto di default */
+#lb-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.96);
+  z-index: 9000;
+  display: none;               /* il JS aggiunge .lb-open */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+/* Visibile: JS aggiunge questa classe */
+#lb-overlay.lb-open {
+  display: flex;
+  opacity: 1;
+}
+
+/* Contenitore centrale immagine */
+#lb-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  pointer-events: none; /* click sullo sfondo passano all'overlay */
+}
+
+#lb-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  outline: 1px solid rgba(244, 239, 228, 0.1);
+}
+
+#lb-cap {
+  margin-top: 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 228, 0.4);
+  text-align: center;
+  min-height: 14px;
+  pointer-events: none;
+}
+
+#lb-count {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(244, 239, 228, 0.3);
+  pointer-events: none;
+}
+
+/* Bottoni condivisi */
+#lb-close,
+#lb-prev,
+#lb-next {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid rgba(244, 239, 228, 0.25);
+  color: #F4EFE4;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.2s;
+  pointer-events: all;
+  line-height: 1;
+}
+
+#lb-close:hover,
+#lb-prev:hover,
+#lb-next:hover {
+  background: rgba(244, 239, 228, 0.1);
+  border-color: rgba(244, 239, 228, 0.5);
+}
+
+#lb-close {
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 14px;
+}
+
+#lb-prev {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  padding-bottom: 2px;
+}
+
+#lb-next {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  padding-bottom: 2px;
+}
+
+/* Cursore zoom-in sulle figure cliccabili */
+.galleria-item {
+  cursor: zoom-in;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #lb-img   { max-width: 96vw; max-height: 72vh; }
+  #lb-prev  { left: 6px; }
+  #lb-next  { right: 6px; }
+  #lb-close { top: 12px; right: 12px; }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =====================================================
+    ISTRUZIONI PER DREAMWEAVER
+    -------------------------------------------------------
+    Questo è il template per le pagine progetto.
+    Per creare un nuovo progetto:
+    1. File > Salva con nome → es. "progetto-vitty-store.html"
+    2. Modifica solo le parti marcate con [MODIFICA]
+    3. Non toccare nulla fuori dai commenti [MODIFICA]
+    4. Salva e carica su GitHub → Netlify si aggiorna da solo
+    ===================================================== -->
+
+  <!-- [MODIFICA] Titolo del progetto nella scheda del browser -->
+  <meta name="description" content="Nome Progetto — Unoaventi Design Studio, Andrea Poletti">
+  <title>Nome Progetto — Unoaventi Design Studio</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/progetto.css">
+  <link rel="stylesheet" href="css/fixes.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGAZIONE (NON MODIFICARE) ========== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="nav-studio">Unoaventi Design Studio</span>
+        <span class="nav-name">Andrea Poletti</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
+
+  <!-- ========== BREADCRUMB (NON MODIFICARE LA STRUTTURA) ========== -->
+  <div class="progetto-breadcrumb">
+    <a href="portfolio.html">← Portfolio</a>
+
+    <!-- [MODIFICA] Categoria: scegli uno tra:
+         cat-fiera    → Allestimento fieristico  (sfondo azzurro)
+         cat-interni  → Interior design          (sfondo magenta)
+         cat-urbano   → Arredo urbano            (sfondo giallo)
+         cat-visioni  → Progetto visionario      (sfondo nero / testo giallo)
+         cat-prodotto → Design di prodotto       (sfondo nero) -->
+    <span class="project-card-cat cat-visioni">progetto visionario</span>
+  </div>
+
+  <!-- ========== TESTATA PROGETTO ========== -->
+  
+	
+	<div class="progetto-hero">
+  <img src="img/progetti/parco-saccafisola/cover.webp" alt="rendering-aereo-parco-tematico-venezia-cubi-cemento-beton-brut-laguna" class="progetto-hero-img">
+  <div class="progetto-hero-accent" style="background:var(--cmyk-c);"></div>
+  <div class="progetto-hero-overlay">
+    <div class="progetto-hero-meta">
+      <span class="progetto-anno">2026</span>
+      <span class="progetto-img-tipo">[ Fotografie ]</span>
+    </div>
+    <h1 class="progetto-titolo">un parco per saccafisola</h1>
+    <p class="progetto-sottotitolo">parco tematico visionario, venezia isola di saccafisola</p>
+  </div>
+</div>
+
+  <!-- ========== CORPO DEL PROGETTO ========== -->
+  <div class="progetto-body">
+
+    <!-- COLONNA SINISTRA: testo principale -->
+    <div class="progetto-testo">
+
+      <!-- [MODIFICA] Descrizione principale del progetto.
+           Puoi usare più paragrafi <p>...</p> -->
+      <p>
+        Immaginate un’architettura che non sfida la marea, ma la invita a partecipare. Il progetto si snoda nella laguna di Venezia come un mosaico tridimensionale di cubi in cemento armato a vista (beton brut), rilasciati con una casualità calcolata. Qui, la brutalità della materia incontra la fragilità dell'ecosistema: i volumi diventano giardini pensili, polmoni verdi sospesi sull'acqua che entra ed esce, scandendo il tempo della natura. Una passerella eterea in acciaio e legno taglia il complesso, ora svanendo tra i giganti di cemento, ora aprendosi su belvedere infiniti. Non è solo un parco tematico; è un organismo vivente dove l'uomo ritrova il suo posto tra artificio e barena.
+      </p>
+      <p>
+        Il cuore pulsante del progetto risiede nella sua grammatica dell'imprevedibile. La disposizione dei cubi non segue una griglia rigida, ma una casualità controllata che frammenta la visione d'insieme, impedendo all'occhio di percepire tutto e subito.
+
+Questa scelta progettuale genera una curiosità cinetica: ogni passo sulla passerella svela uno scorcio inedito, un giardino segreto incastonato nel cemento o una piazza sospesa sulla marea che prima era invisibile. L'ospite è spinto a esplorare non per raggiungere una meta, ma per il piacere della scoperta stessa.
+
+È un labirinto a cielo aperto dove il beton brut protegge la vegetazione e la passerella guida il cammino, ma è il vuoto tra i volumi – imprevedibile e mutevole con l'alzarsi dell'acqua – a dettare il ritmo di un'esperienza sensoriale sempre nuova. Qui, perdersi non è un errore, ma l'unico modo per vivere realmente l'isola.
+      </p>
+
+      <!-- [MODIFICA] Nota opzionale sul tipo di documentazione.
+           Cancella questo blocco se non serve. -->
+      <div class="progetto-nota">
+        Le immagini mostrano il progetto e i rendering delle viste.
+      </div>
+
+    </div>
+
+    <!-- COLONNA DESTRA: scheda tecnica -->
+    <div class="progetto-scheda">
+
+      <!-- [MODIFICA] Anno -->
+      <div class="scheda-row">
+        <span class="scheda-label">Anno</span>
+        <span class="scheda-value">2026</span>
+      </div>
+
+      <!-- [MODIFICA] Cliente (opzionale, scrivi "—" se non vuoi indicarlo) -->
+      <div class="scheda-row">
+        <span class="scheda-label">Cliente</span>
+        <span class="scheda-value">Ego</span>
+      </div>
+
+      <!-- [MODIFICA] Categoria: Allestimento fieristico / Interior design /
+           Arredo urbano / Progetto visionario / Design di prodotto -->
+      <div class="scheda-row">
+        <span class="scheda-label">Categoria</span>
+        <span class="scheda-value">Progetto visionario&nbsp;</span>
+      </div>
+
+      <!-- [MODIFICA] Luogo -->
+      <div class="scheda-row">
+        <span class="scheda-label">Luogo</span>
+        <span class="scheda-value">45°26'N 12°20'E (Laguna di Venezia)</span>
+      </div>
+
+      <!-- [MODIFICA] Dimensione/superficie (opzionale, cancella se non serve) -->
+      <div class="scheda-row">
+        <span class="scheda-label">Superficie</span>
+        <span class="scheda-value">Infinita (fino alla prossima marea)&nbsp;</span>
+      </div>
+
+      <!-- [MODIFICA] Tag sostenibilità: mostra solo se il progetto è sostenibile.
+           Cancella questo blocco se non pertinente. -->
+      <div class="scheda-row scheda-sost">
+        <span class="scheda-label">Sostenibilità</span>
+        <span class="scheda-value scheda-sost-badge">nessun architetto è stato maltrattato (forse)</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ========== GALLERIA IMMAGINI ========== -->
+  <!--
+    [MODIFICA] Combina SEMPRE due classi:
+
+    1) QUANTE immagini (esclusa la cover):
+       galleria-1 / galleria-2 / galleria-3 / galleria-4 / galleria-5
+
+    2) CHE FORMATO sono:
+       (niente)  →  tutte orizzontali  [default]
+       mix-v     →  miste: metti le verticali per ultime nel markup
+       tutte-v   →  tutte verticali
+
+    Esempi pratici:
+       class="progetto-galleria galleria-3"
+          → 3 orizzontali: prima wide, due sotto
+
+       class="progetto-galleria galleria-3 mix-v"
+          → 2 orizzontali + 1 verticale (la verticale per ultima)
+
+       class="progetto-galleria galleria-2 tutte-v"
+          → 2 verticali affiancate
+
+    PROPORZIONI per Squoosh:
+       Cover         →  1400 × 800 px  (16:9)
+       Orizzontale   →  1200 × 800 px  (3:2)
+       Verticale     →   800 × 1100 px (3:4)
+  -->
+  <div class="progetto-galleria galleria-3">
+
+    <figure class="galleria-item">
+      <img src="img/progetti/parco-saccafisola/01.webp" alt="vista-dall-alto-masterplan-parco-cubi-cemento-giardini-pensili-venezia">
+      <figcaption>Geometrie casuali in scala urbana. Dall’alto, l’ordine nel caos rivela la distribuzione dei giardini pensili e dei bacini d'acqua.</figcaption>
+    </figure>
+
+    <figure class="galleria-item">
+      <img src="img/progetti/parco-saccafisola/02.webp" alt="prospettiva-architettonica-isola-artificiale-cemento-armato-laguna-venezia">
+      <figcaption>L'impatto dei volumi 15x15m. La solidità del cemento armato contrasta con la fragilità della barena circostante.</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/parco-saccafisola/03.webp" alt="area-relax-belvedere-cemento-design-urbano-sostenibile-unoaventi">
+      <figcaption>Il punto di fusione: dove più cubi si uniscono per formare spiazzi collettivi e belvedere sospesi sull'orizzonte lagunare.</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/parco-saccafisola/04.webp" alt="passerella-pedonale-legno-acciaio-interni-cubi-cemento-beton-brut">
+      <figcaption>La passerella in legno e acciaio attraversa i giganti di cemento, offrendo percorsi esplorativi sempre diversi.</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/parco-saccafisola/05.webp" alt="rendering-interno-parco-camminamento-passerella-luce-architettonica">
+      <figcaption>Camminare tra i giganti. La scala umana si confronta con il brutalismo materico e la vegetazione spontanea dei giardini.</figcaption>
+    </figure>
+
+    <!-- Aggiungi altri <figure> e aggiorna il numero nella classe galleria-N -->
+
+  </div>
+
+  <!-- ========== NAVIGAZIONE TRA PROGETTI ========== -->
+  <nav class="progetto-nav">
+    <!-- [MODIFICA] Sostituisci href e testo con il progetto precedente.
+         Se non c'è un progetto precedente, cancella questo <a> -->
+    <a href="progetto-sana-2007.html" class="progetto-nav-prev">
+      <span class="mono">← Precedente</span>
+      <span class="progetto-nav-title">sana 2007&nbsp;</span>
+    </a>
+
+    <!-- [MODIFICA] Sostituisci href e testo con il progetto successivo.
+         Se non c'è un progetto successivo, cancella questo <a> -->
+    <a href="portfolio.html" class="progetto-nav-next">
+      <span class="mono">Successivo →</span>
+      <span class="progetto-nav-title">portfolio completo&nbsp;</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER (NON MODIFICARE) ========== -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-studio">Unoaventi Design Studio · Andrea Poletti</span>
+      <span class="footer-copy">© 2024 · unoaventi.it · Scala 1:20</span>
+    </div>
+    <div class="footer-dots">
+      <div class="footer-dot" style="background:var(--cmyk-c);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-m);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-y);"></div>
+      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>
+    </div>
+    <div class="footer-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

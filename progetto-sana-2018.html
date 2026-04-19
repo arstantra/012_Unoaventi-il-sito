@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =====================================================
+    ISTRUZIONI PER DREAMWEAVER
+    -------------------------------------------------------
+    Questo è il template per le pagine progetto.
+    Per creare un nuovo progetto:
+    1. File > Salva con nome → es. "progetto-vitty-store.html"
+    2. Modifica solo le parti marcate con [MODIFICA]
+    3. Non toccare nulla fuori dai commenti [MODIFICA]
+    4. Salva e carica su GitHub → Netlify si aggiorna da solo
+    ===================================================== -->
+
+  <!-- [MODIFICA] Titolo del progetto nella scheda del browser -->
+  <meta name="description" content="Allestimento SANA 2018 per IONC e Bioagricert. Un esperimento di design sostenibile basato sul riciclo creativo di cassette della frutta e grafica luminosa — Unoaventi Design Studio, Andrea Poletti">
+  <title>SANA 2018: IONC e Bioagricert — Unoaventi Design Studio</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/progetto.css">
+  <link rel="stylesheet" href="css/fixes.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGAZIONE (NON MODIFICARE) ========== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">
+      <div class="nav-logo-text">
+        <span class="nav-studio">Unoaventi Design Studio</span>
+        <span class="nav-name">Andrea Poletti</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </nav>
+
+  <!-- ========== BREADCRUMB (NON MODIFICARE LA STRUTTURA) ========== -->
+  <div class="progetto-breadcrumb">
+    <a href="portfolio.html">← Portfolio</a>
+
+    <!-- [MODIFICA] Categoria: scegli uno tra:
+         cat-fiera / cat-interni / cat-urbano / cat-prodotto -->
+    <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
+  </div>
+
+  <!-- ========== TESTATA PROGETTO ========== -->
+  
+	
+	<div class="progetto-hero">
+  <img src="img/progetti/sana-2018/cover.webp" alt="sana 2018 il giardino dei semplici in fiera" class="progetto-hero-img">
+  <div class="progetto-hero-accent" style="background:var(--cmyk-c);"></div>
+  <div class="progetto-hero-overlay">
+    <div class="progetto-hero-meta">
+      <span class="progetto-anno">2018</span>
+      <span class="progetto-img-tipo">[ Fotografie ]</span>
+    </div>
+    <h1 class="progetto-titolo">sana 2018</h1>
+    <p class="progetto-sottotitolo">Il giardino dei semplici, Bologna fiera, Bioagricert e IONC</p>
+  </div>
+</div>
+
+  <!-- ========== CORPO DEL PROGETTO ========== -->
+  <div class="progetto-body">
+
+    <!-- COLONNA SINISTRA: testo principale -->
+    <div class="progetto-testo">
+
+      <!-- [MODIFICA] Descrizione principale del progetto.
+           Puoi usare più paragrafi <p>...</p> -->
+      <p class="progetto-intro">
+      Un esperimento di <strong>upcycling architettonico</strong> per IONC e Bioagricert. 
+      L'allestimento esplora la dicotomia tra l'estetica grezza delle cassette della frutta riciclate e la precisione chirurgica della grande grafica retroilluminata.
+    </p>
+
+      <!-- [MODIFICA] Nota opzionale sul tipo di documentazione.
+           Cancella questo blocco se non serve. -->
+      <div class="progetto-nota">
+        Le immagini mostrano il progetto di presentazione al cliente.
+        Lo stand realizzato ne riprende l'impostazione con alcune variazioni.
+      </div>
+
+    </div>
+
+    <!-- COLONNA DESTRA: scheda tecnica -->
+    <div class="progetto-scheda">
+
+      <!-- [MODIFICA] Anno -->
+      <div class="scheda-row">
+        <span class="scheda-label">Anno</span>
+        <span class="scheda-value">2018&nbsp;</span>
+      </div>
+
+      <!-- [MODIFICA] Cliente (opzionale, scrivi "—" se non vuoi indicarlo) -->
+      <div class="scheda-row">
+        <span class="scheda-label">Cliente</span>
+        <span class="scheda-value">Cosmos e Bioagricert</span>
+      </div>
+
+      <!-- [MODIFICA] Categoria: Allestimento fieristico / Interior design /
+           Arredo urbano / Design di prodotto -->
+      <div class="scheda-row">
+        <span class="scheda-label">Categoria</span>
+        <span class="scheda-value">Allestimento fieristico</span>
+      </div>
+
+      <!-- [MODIFICA] Luogo -->
+      <div class="scheda-row">
+        <span class="scheda-label">Luogo</span>
+        <span class="scheda-value">Bologna</span>
+      </div>
+
+      <!-- [MODIFICA] Dimensione/superficie (opzionale, cancella se non serve) -->
+      <div class="scheda-row">
+        <span class="scheda-label">Superficie</span>
+        <span class="scheda-value">64 m²</span>
+      </div>
+
+      <!-- [MODIFICA] Tag sostenibilità: mostra solo se il progetto è sostenibile.
+           Cancella questo blocco se non pertinente. -->
+      <div class="scheda-row scheda-sost">
+        <span class="scheda-label">Sostenibilità</span>
+        <span class="scheda-value scheda-sost-badge">Zero rifiuti, riutilizzo dei materiali</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ========== GALLERIA IMMAGINI ========== -->
+  <!--
+    [MODIFICA] Combina SEMPRE due classi:
+
+    1) QUANTE immagini (esclusa la cover):
+       galleria-1 / galleria-2 / galleria-3 / galleria-4 / galleria-5
+
+    2) CHE FORMATO sono:
+       (niente)  →  tutte orizzontali  [default]
+       mix-v     →  miste: metti le verticali per ultime nel markup
+       tutte-v   →  tutte verticali
+
+    Esempi pratici:
+       class="progetto-galleria galleria-3"
+          → 3 orizzontali: prima wide, due sotto
+
+       class="progetto-galleria galleria-3 mix-v"
+          → 2 orizzontali + 1 verticale (la verticale per ultima)
+
+       class="progetto-galleria galleria-2 tutte-v"
+          → 2 verticali affiancate
+
+    PROPORZIONI per Squoosh:
+       Cover         →  1400 × 800 px  (16:9)
+       Orizzontale   →  1200 × 800 px  (3:2)
+       Verticale     →   800 × 1100 px (3:4)
+  -->
+  <div class="progetto-galleria galleria-3">
+
+    <figure class="galleria-item">
+      <img src="img/progetti/sana-2018/01.webp" alt="Descrizione 1">
+      <figcaption>Didascalia al passaggio del mouse</figcaption>
+    </figure>
+
+    <figure class="galleria-item">
+      <img src="img/progetti/sana-2018/02.webp" alt="Descrizione 2">
+      <figcaption>Didascalia al passaggio del mouse</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/sana-2018/03.webp" alt="Descrizione 2">
+      <figcaption>Didascalia al passaggio del mouse</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/sana-2018/04.webp" alt="Descrizione 2">
+      <figcaption>Didascalia al passaggio del mouse</figcaption>
+    </figure>
+	  
+	  <figure class="galleria-item">
+      <img src="img/progetti/sana-2018/05.webp" alt="Descrizione 2">
+      <figcaption>Didascalia al passaggio del mouse</figcaption>
+    </figure>
+
+    <!-- Aggiungi altri <figure> e aggiorna il numero nella classe galleria-N -->
+
+  </div>
+
+  <!-- ========== NAVIGAZIONE TRA PROGETTI ========== -->
+  <nav class="progetto-nav">
+    <!-- [MODIFICA] Sostituisci href e testo con il progetto precedente.
+         Se non c'è un progetto precedente, cancella questo <a> -->
+    <a href="progetto-cosmoprof-2019.html" class="progetto-nav-prev">
+      <span class="mono">← Precedente</span>
+      <span class="progetto-nav-title">cosmoprof 2019&nbsp;</span>
+    </a>
+
+    <!-- [MODIFICA] Sostituisci href e testo con il progetto successivo.
+         Se non c'è un progetto successivo, cancella questo <a> -->
+    <a href="progetto-vittys-store.html" class="progetto-nav-next">
+      <span class="mono">Successivo →</span>
+      <span class="progetto-nav-title">vitty's store&nbsp;</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER (NON MODIFICARE) ========== -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-studio">Unoaventi Design Studio · Andrea Poletti</span>
+      <span class="footer-copy">© 2024 · unoaventi.it · Scala 1:20</span>
+    </div>
+    <div class="footer-dots">
+      <div class="footer-dot" style="background:var(--cmyk-c);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-m);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-y);"></div>
+      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>
+    </div>
+    <div class="footer-links">
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Chi sono</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
