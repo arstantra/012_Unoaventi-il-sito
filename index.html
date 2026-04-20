@@ -66,15 +66,30 @@
     </div>
 
     <div class="hero-right">
-      <a href="progetto-sana-2023.html" class="hero-featured">
+		
+	
+      <!-- ===== HERO SLIDESHOW =====
+           Per aggiungere/togliere immagini: modifica solo l'array
+           HERO_SLIDES in fondo alla pagina (prima di </body>).
+           Le immagini vanno nella cartella img/hero/
+           Formato consigliato: 1200×900px, WebP, max 200kb
+      ===== -->
+      <div class="hero-featured hero-slideshow" id="heroSlideshow">
         <div class="hero-featured-bg"></div>
-        <img src="img/progetti/sana-2023-hero-crop.webp" alt="SANA 2023" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;">
+
+        <!-- Le slide vengono iniettate dallo script -->
+        <div class="hero-slides-wrap" id="heroSlidesWrap"></div>
+
+        <!-- Indicatori di posizione (dots) -->
+        <div class="hero-slide-dots" id="heroSlideDots"></div>
+
+        <!-- Overlay testo fisso -->
         <div class="hero-featured-overlay">
-          <div class="hero-featured-label">Progetto in evidenza · Allestimento fieristico</div>
-          <div class="hero-featured-title">SANA 2023</div>
-          <div class="hero-featured-year">Salone Internazionale del Biologico · Bologna</div>
+          <div class="hero-featured-label">Portfolio · Unoaventi Design Studio</div>
+          <div class="hero-featured-title">I Progetti</div>
+          <div class="hero-featured-year">Allestimenti · Interni · Arredo urbano</div>
         </div>
-      </a>
+      </div>
 
       <div class="hero-stats">
         <div class="hero-stat">
@@ -93,6 +108,7 @@
     </div>
 
   </section>
+
 
   <!-- ========== TICKER ========== -->
   <div class="ticker" aria-hidden="true">
@@ -127,99 +143,8 @@
       <a href="portfolio.html" class="link-all">Tutti i lavori →</a>
     </div>
 
-    <div class="projects-grid">
-
-      <!-- SANA 2023 -->
-      <a href="progetto-sana-2023.html" class="project-card">
-        <div class="project-card-img pat-dots">
-          <div class="project-card-img-bar" style="background:var(--cmyk-c);"></div>
-          <img src="img/progetti/sana-2023-render.webp" alt="SANA 2023" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2023</span>
-          <h3 class="project-card-title">SANA 2023</h3>
-          <p class="project-card-desc">Allestimento fieristico per il Salone Internazionale del Biologico e del Naturale. Bologna.</p>
-          <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
-        </div>
-      </a>
-
-      <!-- SANA 2020 -->
-      <a href="progetto-sana-2020.html" class="project-card">
-        <div class="project-card-img pat-lines">
-          <div class="project-card-img-bar" style="background:var(--cmyk-m);"></div>
-			<img src="img/progetti/sana-2020/cover.webp" alt="Ingresso e Libreria Ferrara" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-          <span class="project-card-img-label">[ foto ]</span>
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2020</span>
-          <h3 class="project-card-title">SANA 2020</h3>
-          <p class="project-card-desc">Allestimento fieristico per il Salone Internazionale del Biologico e del Naturale. Bologna.</p>
-          <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
-        </div>
-      </a>
-
-      <!-- Ingresso e libreria Ferrara -->
-      <a href="progetto-ingresso-libreria-ferrara.html" class="project-card">
-        <div class="project-card-img pat-grid">
-          <div class="project-card-img-bar" style="background:var(--c-yel-dark);"></div>
-          <img src="img/progetti/interno-ferrara-2022/cover.jpg" alt="Ingresso e Libreria Ferrara" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-          <span class="project-card-img-label">[ foto ]</span>
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2022</span>
-          <h3 class="project-card-title">Ingresso e Libreria — Ferrara</h3>
-          <p class="project-card-desc">Interior design per ingresso e libreria in abitazione nel centro storico di Ferrara.</p>
-          <span class="project-card-cat cat-interni">Interior design</span>
-        </div>
-      </a>
-
-      <!-- casa-nel-parco -->
-      <a href="progetto-casa-nel-parco-2010.html" class="project-card">
-        <div class="project-card-img pat-dots">
-          <div class="project-card-img-bar" style="background:var(--inchiostro);"></div>
-			
-			<img src="img/progetti/casa-nel-parco/cover.webp" alt="Casa Museo nel parco Adamello Brenta in Trentino" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-          <span class="project-card-img-label">[ foto ]</span>
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2010</span>
-          <h3 class="project-card-title">concorso: la Casa nel Parco</h3>
-          <p class="project-card-desc">Progetto di concorso per una casa museo per il Parco Adamello Brenta in Trentino.</p>
-          <span class="project-card-cat cat-interni">Interior design</span>
-        </div>
-      </a>
-
-      <!-- COSMOPROF 2019 -->
-      <a href="progetto-cosmoprof-2019.html" class="project-card">
-        <div class="project-card-img pat-lines">
-          <div class="project-card-img-bar" style="background:var(--cmyk-c);"></div>
-          <img src="img/progetti/cosmoprof-2019/cover.webp" alt="Casa Museo nel parco Adamello Brenta in Trentino" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2019</span>
-          <h3 class="project-card-title">COSMOPROF 2019</h3>
-          <p class="project-card-desc">Allestimento fieristico per Cosmoprof Worldwide. Bologna.</p>
-          <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
-        </div>
-      </a>
-
-      <!-- Impianti pubblicità esterna -->
-      <a href="progetto-impianti-pubblicità-esterna.html" class="project-card">
-        <div class="project-card-img pat-grid">
-          <div class="project-card-img-bar" style="background:var(--inchiostro);"></div>
-			
-			<img src="img/progetti/impianti-pubblicita-esterna/cover.webp" alt="Casa Museo nel parco Adamello Brenta in Trentino" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-          			
-          </div>
-        <div class="project-card-body">
-          <span class="project-card-year">2007</span>
-          <h3 class="project-card-title">Impianti per Pubblicità Esterna</h3>
-          <p class="project-card-desc">Design di prodotto e arredo urbano. Sistema di impianti per la comunicazione esterna.</p>
-          <span class="project-card-cat cat-urbano">Arredo urbano</span>
-        </div>
-      </a>
-
-    </div>
+    <!-- Griglia popolata dinamicamente da js/progetti.js -->
+    <div class="projects-grid" id="homeGrid"></div>
   </section>
 
   <!-- ========== STRIP CHI SONO ========== -->
@@ -280,5 +205,131 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/progetti.js"></script>
+  <script>
+    /* HOME — mostra 6 progetti casuali da PROGETTI */
+    (function () {
+      var grid = document.getElementById('homeGrid');
+      if (!grid || typeof PROGETTI === 'undefined') return;
+
+      /* Shuffle Fisher-Yates */
+      var list = PROGETTI.slice();
+      for (var i = list.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = list[i]; list[i] = list[j]; list[j] = t;
+      }
+
+      list.slice(0, 6).forEach(function (p) {
+        var html =
+          '<a href="' + p.href + '" class="project-card">' +
+            '<div class="project-card-img ' + p.pat + '">' +
+              '<div class="project-card-img-bar" style="background:' + p.bar + ';"></div>' +
+              (p.img ? '<img src="' + p.img + '" alt="' + p.title + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">' : '') +
+            '</div>' +
+            '<div class="project-card-body">' +
+              '<span class="project-card-year">' + p.year + '</span>' +
+              '<h3 class="project-card-title">' + p.title + '</h3>' +
+              '<p class="project-card-desc">' + p.desc + '</p>' +
+              '<span class="project-card-cat ' + p.catClass + '">' + p.catLabel + '</span>' +
+            '</div>' +
+          '</a>';
+        grid.insertAdjacentHTML('beforeend', html);
+      });
+    })();
+  </script>
+	
+	 <!-- =====================================================
+    HERO SLIDESHOW — configurazione
+    =====================================================
+    Per modificare le immagini: edita SOLO l'array qui sotto.
+    Le immagini vanno nella cartella  img/hero/
+
+    Formato consigliato:
+      Dimensioni  1200 × 900 px  (o 1400 × 800 per landscape)
+      Formato     WebP  (JPG come fallback)
+      Peso        max 200 kb ciascuna  (usa Squoosh)
+      Nome file   senza spazi, solo trattini
+
+    Aggiungere   → aggiungi una riga nell'array
+    Togliere     → cancella la riga
+    Cambiare ordine → riordina le righe
+    ===================================================== -->
+  <script>
+    const HERO_SLIDES = [
+      'img/hero/01.webp',
+      'img/hero/02.webp',
+      'img/hero/03.webp',
+      'img/hero/04.webp',
+      'img/hero/05.webp',
+	  'img/hero/06.webp',
+	  'img/hero/07.webp',
+      /* aggiungi altre immagini qui sopra */
+    ];
+
+    /* Tempi in millisecondi */
+    const SLIDE_DURATION = 4000;  /* quanto resta visibile ogni foto */
+    const FADE_DURATION  =  900;  /* durata della dissolvenza */
+
+    /* ---- NON MODIFICARE SOTTO QUESTA RIGA ---- */
+    (function () {
+      const wrap     = document.getElementById('heroSlidesWrap');
+      const dotsWrap = document.getElementById('heroSlideDots');
+      if (!wrap || !HERO_SLIDES.length) return;
+
+      let current = 0;
+      let timer   = null;
+
+      /* Crea gli elementi img e i dots */
+      const imgs = HERO_SLIDES.map(function (src, i) {
+        const img = document.createElement('img');
+        img.src       = src;
+        img.alt       = 'Portfolio Unoaventi Design Studio';
+        img.className = 'hero-slide-img' + (i === 0 ? ' is-active' : '');
+        wrap.appendChild(img);
+
+        const dot = document.createElement('span');
+        dot.className = 'hero-slide-dot' + (i === 0 ? ' is-active' : '');
+        dotsWrap.appendChild(dot);
+
+        return img;
+      });
+
+      const dots = Array.from(dotsWrap.querySelectorAll('.hero-slide-dot'));
+
+      function goTo(next) {
+        const prev = current;
+        if (next === prev) return;
+
+        imgs[next].classList.add('is-active');
+        dots[next].classList.add('is-active');
+
+        setTimeout(function () {
+          imgs[prev].classList.remove('is-active');
+          dots[prev].classList.remove('is-active');
+        }, FADE_DURATION);
+
+        current = next;
+      }
+
+      function advance() {
+        goTo((current + 1) % imgs.length);
+      }
+
+      function startTimer() { timer = setInterval(advance, SLIDE_DURATION); }
+      function stopTimer()  { clearInterval(timer); }
+
+      startTimer();
+
+      /* Pausa hover su desktop */
+      var ss = document.getElementById('heroSlideshow');
+      ss.addEventListener('mouseenter', stopTimer);
+      ss.addEventListener('mouseleave', startTimer);
+
+      /* Accessibilità: ferma se prefers-reduced-motion */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stopTimer();
+      }
+    })();
+  </script>
 </body>
 </html>

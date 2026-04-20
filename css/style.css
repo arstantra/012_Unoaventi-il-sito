@@ -19,6 +19,8 @@
   --c-cyan-dark: #0082B3;
   --c-mag-dark:  #B8006C;
   --c-yel-dark:  #C4A000;
+  --pantone:     #8B2FC9;   /* Grafica & Comunicazione — viola Pantone */
+  --pantone-dark:#6B1FA0;
   --font-display: 'Bebas Neue', sans-serif;
   --font-serif:   'DM Serif Display', serif;
   --font-mono:    'DM Mono', monospace;
@@ -159,7 +161,6 @@ a { color: inherit; text-decoration: none; }
    ============================================ */
 .hero {
   min-height: calc(100vh - 64px);
-  max-height: 800px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1.5px solid var(--inchiostro);
@@ -254,10 +255,6 @@ a { color: inherit; text-decoration: none; }
   min-height: 400px;
   display: flex;
   align-items: flex-end;
-}
-
-.hero-featured img {
-  object-position: top center;
 }
 
 .hero-featured-bg {
@@ -452,7 +449,8 @@ a { color: inherit; text-decoration: none; }
 .project-card:hover { background: var(--carta-dark); }
 
 .project-card-img {
-  height: 220px;
+  aspect-ratio: 16 / 9;   /* proporzione fissa — non si schiaccia mai */
+  min-height: 180px;      /* floor di sicurezza su schermi molto larghi */
   background: var(--carta-dark);
   position: relative;
   overflow: hidden;
@@ -533,11 +531,12 @@ a { color: inherit; text-decoration: none; }
   margin-top: 4px;
 }
 
-.cat-fiera   { background: var(--cmyk-c);      color: var(--carta); }
-.cat-interni { background: var(--cmyk-m);      color: var(--carta); }
-.cat-urbano  { background: var(--c-yel-dark);  color: var(--inchiostro); }
+.cat-effimera { background: var(--cmyk-c);     color: var(--carta); }
+.cat-interni  { background: var(--cmyk-m);     color: var(--carta); }
+.cat-urbano   { background: var(--c-yel-dark); color: var(--inchiostro); }
 .cat-prodotto { background: var(--inchiostro); color: var(--carta); }
-.cat-visioni { background: var(--inchiostro);  color: var(--cmyk-y); }
+.cat-grafica  { background: var(--pantone);    color: var(--carta); }
+.cat-visioni  { background: var(--inchiostro); color: var(--carta); }
 
 /* ============================================
    SEZIONE ABOUT (STRIP)
