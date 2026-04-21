@@ -136,7 +136,7 @@ var PROGETTI = [
   },
 	
   {
-    href:     'progetto-bagno-interno-ferrara.html',
+    href:     'progetto-bagno-centro-ferrara.html',
     img:      'img/progetti/bagno-interno-ferrara/cover.webp',
     pat:      'pat-grid',
     bar:      'var(--inchiostro)',
