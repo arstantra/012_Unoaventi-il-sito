@@ -98,7 +98,7 @@ var PROGETTI = [
 
   {
     href:     'progetto-casa-nel-parco-2010.html',
-    img:      'img/progetti/casa-nel-parco-2010/cover.webp',
+    img:      'img/progetti/casa-nel-parco/cover.webp',
     pat:      'pat-dots',
     bar:      'var(--inchiostro)',
     year:     '2010',
@@ -136,8 +136,8 @@ var PROGETTI = [
   },
 	
   {
-    href:     'progetto-bagno-centro-ferrara.html',
-    img:      'img/progetti/bagno-centro-ferrara/cover.webp',
+    href:     'progetto-bagno-interno-ferrara.html',
+    img:      'img/progetti/bagno-interno-ferrara/cover.webp',
     pat:      'pat-grid',
     bar:      'var(--inchiostro)',
     year:     '2007',

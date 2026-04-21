@@ -34,8 +34,8 @@
     <a href="blog.html">← Blog</a>
     <!-- [MODIFICA] Categoria blog — scegli classe e testo:
          tag tag-c → Design effimero / Allestimenti
-         tag tag-m → Sostenibilità / Didattica
-         tag tag-y → SketchUp / Munari
+         tag tag-m → Sostenibilità / Persone
+         tag tag-y → Didattica / SketchUp / Munari
          tag       → tono neutro (qualsiasi altro argomento) -->
     <span class="tag tag-m" style="font-size:10px; padding:4px 10px;">Categoria</span>
   </div>
@@ -43,19 +43,17 @@
   <!-- ========== TESTATA ARTICOLO ========== -->
   <header class="articolo-header">
     <div class="articolo-header-meta">
-      <!-- [MODIFICA] Data: es. 15 Marzo 2025 -->
+      <!-- [MODIFICA] Data: es. "Aprile 2025" -->
       <span class="articolo-data mono">Data</span>
-      <span class="articolo-lettura mono">
-        <!-- [MODIFICA] Stima minuti di lettura: conta ~200 parole/minuto -->
-        5 min di lettura
-      </span>
+      <!-- [MODIFICA] Stima minuti di lettura: ~200 parole/minuto -->
+      <span class="articolo-lettura mono">5 min di lettura</span>
     </div>
     <!-- [MODIFICA] Titolo principale dell'articolo -->
     <h1 class="articolo-titolo">Titolo dell'articolo</h1>
-    <!-- [MODIFICA] Occhiello — frase di apertura, massimo 2 righe -->
+    <!-- [MODIFICA] Occhiello — frase di apertura, massimo 2 righe.
+         Può essere una domanda, una provocazione, un'affermazione netta. -->
     <p class="articolo-occhiello">
-      Frase di apertura che introduce il tema. Può essere una domanda, 
-      una provocazione, un'affermazione netta.
+      Frase di apertura che introduce il tema.
     </p>
   </header>
 
@@ -64,49 +62,50 @@
     <div class="articolo-testo">
 
       <!--
-        ISTRUZIONI TESTO
-        ================
-        Usa questi elementi:
-        <p>          → paragrafo normale
-        <h2>         → titolo di sezione
-        <h3>         → sottotitolo
-        <em>         → corsivo (enfasi)
-        <strong>     → grassetto (parola chiave)
-        <blockquote> → citazione in evidenza
-        <ul><li>     → lista puntata
+        ═══════════════════════════════════════════
+        ELEMENTI DI TESTO
+        ═══════════════════════════════════════════
+        <p>             → paragrafo normale
+        <h2>            → titolo di sezione
+        <h3>            → sottotitolo
+        <em>            → corsivo (enfasi leggera)
+        <strong>        → grassetto (parola chiave)
+        <blockquote>    → citazione in evidenza
+        <ul><li>        → lista puntata
 
-        Esempio blockquote:
-        <blockquote>
-          "Una frase memorabile che vale la pena isolare."
-        </blockquote>
+        ═══════════════════════════════════════════
+        IMMAGINE INLINE
+        ═══════════════════════════════════════════
+        <figure>
+          <img src="img/blog/nome-file.webp" alt="Descrizione accessibile">
+          <figcaption>Didascalia opzionale sotto l'immagine</figcaption>
+        </figure>
+
+        Formato consigliato: WebP, 1200px larghezza, max 150kb
+
+        ═══════════════════════════════════════════
+        VIDEO YOUTUBE (opzionale)
+        ═══════════════════════════════════════════
+        1. Su YouTube: Condividi → Incorpora
+        2. Copia l'ID dall'URL embed (es. "7ydtHp_F23g")
+        3. Incollalo al posto di XXXXXXXXXXX
+        4. Se non serve, cancella il blocco
+
+        <div class="articolo-video">
+          <iframe
+            src="https://www.youtube.com/embed/XXXXXXXXXXX"
+            title="Descrizione accessibile del video"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="articolo-video-caption">Didascalia opzionale</p>
+        ═══════════════════════════════════════════
       -->
 
       <!-- [MODIFICA] Scrivi qui il tuo articolo -->
       <p>
-        Primo paragrafo. Introduci il tema in modo diretto — senza preamboli, 
-        senza "in questo articolo parlerò di". Inizia dalla cosa più interessante.
+        Primo paragrafo. Inizia dalla cosa più interessante — senza preamboli.
       </p>
-
-      <!--
-        VIDEO YOUTUBE (opzionale)
-        =========================
-        1. Vai sul tuo video su YouTube
-        2. Clic su "Condividi" → "Incorpora"
-        3. Copia solo l'ID dall'URL: youtube.com/embed/XXXXXXXXXXX
-        4. Incolla l'ID al posto di XXXXXXXXXXX qui sotto
-        5. Puoi mettere il video in qualunque punto dell'articolo
-        6. Se non hai un video, cancella questo blocco
-      -->
-      <!--
-      <div class="articolo-video">
-        <iframe
-          src="https://www.youtube.com/embed/XXXXXXXXXXX"
-          title="Descrizione del video per accessibilità"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <p class="articolo-video-caption">Didascalia opzionale sotto il video</p>
-      -->
 
       <h2>Primo titolo di sezione</h2>
 
@@ -119,7 +118,7 @@
       </blockquote>
 
       <p>
-        Terzo paragrafo. Continua.
+        Terzo paragrafo.
       </p>
 
       <h2>Secondo titolo di sezione</h2>
@@ -129,14 +128,15 @@
       </p>
 
       <p>
-        Conclusione. Non serve una conclusione formale — puoi finire con 
-        una domanda aperta o un'osservazione secca.
+        Conclusione — puoi finire con una domanda aperta o un'osservazione secca.
       </p>
 
     </div>
 
-    <!-- Sidebar con info autore -->
+    <!-- ========== SIDEBAR ========== -->
     <aside class="articolo-aside">
+
+      <!-- Autore — non modificare -->
       <div class="articolo-autore">
         <img src="img/andrea-poletti.jpg" alt="Andrea Poletti" class="articolo-autore-foto">
         <div>
@@ -144,27 +144,40 @@
           <div class="articolo-autore-ruolo mono">Progettista · Docente</div>
         </div>
       </div>
-      <!-- [MODIFICA] Aggiungi qui link a progetti correlati se pertinente -->
+
+      <!-- [MODIFICA] Blocchi info sidebar — aggiungi/rimuovi a piacere.
+           Ogni blocco: etichetta mono + valore testo -->
+      <!--
+      <div class="aside-block">
+        <h4>Etichetta</h4>
+        <p>Valore</p>
+      </div>
+      <div class="aside-block">
+        <h4>Altra etichetta</h4>
+        <p>Altro valore</p>
+      </div>
+      -->
+
+      <!-- [MODIFICA] Progetti correlati — aggiungi se pertinente, altrimenti cancella -->
       <!--
       <div class="articolo-correlati">
         <div class="mono" style="font-size:9px; opacity:0.4; letter-spacing:0.2em; margin-bottom:12px;">Progetti correlati</div>
-        <a href="progetto-sana-2018.html" class="articolo-correlato-link">
-          SANA 2018 →
-        </a>
+        <a href="progetto-sana-2023.html" class="articolo-correlato-link">SANA 2023 →</a>
+        <a href="progetto-cosmoprof-2019.html" class="articolo-correlato-link">Cosmoprof 2019 →</a>
       </div>
       -->
-    </aside>
 
+    </aside>
   </div>
 
   <!-- Navigazione articoli -->
   <nav class="progetto-nav">
-    <!-- [MODIFICA] Articolo precedente — cancella se non c'è -->
+    <!-- [MODIFICA] Articolo precedente — cancella il blocco <a> se non c'è -->
     <a href="blog.html" class="progetto-nav-prev">
       <span class="mono">← Tutti gli articoli</span>
       <span class="progetto-nav-title">Blog</span>
     </a>
-    <!-- [MODIFICA] Articolo successivo — cancella se non c'è -->
+    <!-- [MODIFICA] Articolo successivo — cancella il blocco <a> se non c'è -->
     <a href="portfolio.html" class="progetto-nav-next">
       <span class="mono">Vedi anche →</span>
       <span class="progetto-nav-title">Portfolio</span>

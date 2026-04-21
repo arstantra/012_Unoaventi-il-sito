@@ -56,9 +56,12 @@
           <span class="serif-italic">fin da quando non era di moda esserlo.</span>
         </p>
         <div class="hero-tags">
-          <span class="tag tag-c">Allestimenti fieristici</span>
+          <span class="tag tag-c">Architetture effimere</span>
           <span class="tag tag-m">Interior design</span>
           <span class="tag tag-y">Arredo urbano</span>
+          <span class="tag tag-k">Design di prodotto</span>
+          <span class="tag tag-p">Grafica &amp; comunicazione</span>
+          <span class="tag tag-v">Progetti visionari</span>
           <span class="tag">Sostenibilità</span>
           <span class="tag">Didattica</span>
         </div>
@@ -66,8 +69,7 @@
     </div>
 
     <div class="hero-right">
-		
-	
+
       <!-- ===== HERO SLIDESHOW =====
            Per aggiungere/togliere immagini: modifica solo l'array
            HERO_SLIDES in fondo alla pagina (prima di </body>).
@@ -80,14 +82,15 @@
         <!-- Le slide vengono iniettate dallo script -->
         <div class="hero-slides-wrap" id="heroSlidesWrap"></div>
 
-        <!-- Indicatori di posizione (dots) -->
-        <div class="hero-slide-dots" id="heroSlideDots"></div>
-
-        <!-- Overlay testo fisso -->
+        <!-- Overlay testo — etichetta dinamica per slide -->
         <div class="hero-featured-overlay">
-          <div class="hero-featured-label">Portfolio · Unoaventi Design Studio</div>
-          <div class="hero-featured-title">I Progetti</div>
-          <div class="hero-featured-year">Allestimenti · Interni · Arredo urbano</div>
+          <div class="hero-overlay-accent-bar" id="heroAccentBar"></div>
+          <div class="hero-featured-title">I Progetti<span class="hero-title-dot">.</span></div>
+          <!-- L'etichetta viene aggiornata dallo script ad ogni cambio slide -->
+          <div class="hero-slide-label-wrap" id="heroSlideLabel">
+            <span class="hero-slide-label-pill" id="heroSlideLabelPill"></span>
+            <span class="hero-slide-label-text" id="heroSlideLabelText"></span>
+          </div>
         </div>
       </div>
 
@@ -113,19 +116,23 @@
   <!-- ========== TICKER ========== -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span class="ticker-item">Design effimero</span><span class="ticker-sep">·</span>
-      <span class="ticker-item">Allestimenti fieristici</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Architetture effimere</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Interior design</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Arredo urbano</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Design di prodotto</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Grafica &amp; comunicazione</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Progetti visionari</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Sostenibilità dal 2007</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Scala 1:20</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Andrea Poletti</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Unoaventi Design Studio</span><span class="ticker-sep">·</span>
       <!-- ripetizione per loop continuo -->
-      <span class="ticker-item">Design effimero</span><span class="ticker-sep">·</span>
-      <span class="ticker-item">Allestimenti fieristici</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Architetture effimere</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Interior design</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Arredo urbano</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Design di prodotto</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Grafica &amp; comunicazione</span><span class="ticker-sep">·</span>
+	  <span class="ticker-item">Progetti visionari</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Sostenibilità dal 2007</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Scala 1:20</span><span class="ticker-sep">·</span>
       <span class="ticker-item">Andrea Poletti</span><span class="ticker-sep">·</span>
@@ -237,8 +244,8 @@
       });
     })();
   </script>
-	
-	 <!-- =====================================================
+
+  <!-- =====================================================
     HERO SLIDESHOW — configurazione
     =====================================================
     Per modificare le immagini: edita SOLO l'array qui sotto.
@@ -255,16 +262,46 @@
     Cambiare ordine → riordina le righe
     ===================================================== -->
   <script>
+    /*
+      HERO SLIDESHOW — configurazione
+      =====================================================
+      Ogni slide è un oggetto con:
+        src      → percorso immagine  (cartella img/hero/)
+        label    → nome del progetto o descrizione breve
+        cat      → chiave categoria (effimera/interni/urbano/prodotto/grafica/visioni)
+
+      Categoria → colore barra accent + pill etichetta:
+        effimera → cyan    #00AEEF
+        interni  → magenta #EC008C
+        urbano   → giallo  #C4A000
+        prodotto → grigio  #6B6560
+        grafica  → viola   #8B2FC9
+        visioni  → nero    #1A1612
+
+      Aggiungere → aggiungi un oggetto nell'array
+      Togliere   → cancella l'oggetto
+      Riordinare → riordina gli oggetti
+    */
     const HERO_SLIDES = [
-      'img/hero/01.webp',
-      'img/hero/02.webp',
-      'img/hero/03.webp',
-      'img/hero/04.webp',
-      'img/hero/05.webp',
-	  'img/hero/06.webp',
-	  'img/hero/07.webp',
-      /* aggiungi altre immagini qui sopra */
+      { src: 'img/hero/01.webp', label: 'Architetture effimere',   cat: 'effimera' },
+      { src: 'img/hero/02.webp', label: 'Interior design',         cat: 'interni'  },
+      { src: 'img/hero/03.webp', label: 'Arredo urbano',           cat: 'urbano'   },
+      { src: 'img/hero/04.webp', label: 'Architetture effimere',   cat: 'effimera' },
+      { src: 'img/hero/05.webp', label: 'Interior design',         cat: 'interni'  },
+      { src: 'img/hero/06.webp', label: 'Architetture effimere',   cat: 'effimera' },
+      { src: 'img/hero/07.webp', label: 'Arredo urbano',           cat: 'urbano'   },
+      /* aggiungi altre slide qui sopra */
     ];
+
+    /* Mappa categoria → colore hex (speculare alle variabili CSS) */
+    const CAT_COLORS = {
+      effimera: '#00AEEF',
+      interni:  '#EC008C',
+      urbano:   '#C4A000',
+      prodotto: '#6B6560',
+      grafica:  '#8B2FC9',
+      visioni:  '#1A1612',
+    };
 
     /* Tempi in millisecondi */
     const SLIDE_DURATION = 4000;  /* quanto resta visibile ogni foto */
@@ -272,43 +309,74 @@
 
     /* ---- NON MODIFICARE SOTTO QUESTA RIGA ---- */
     (function () {
-      const wrap     = document.getElementById('heroSlidesWrap');
-      const dotsWrap = document.getElementById('heroSlideDots');
+      const wrap      = document.getElementById('heroSlidesWrap');
+      const labelPill = document.getElementById('heroSlideLabelPill');
+      const labelText = document.getElementById('heroSlideLabelText');
+      const accentBar = document.getElementById('heroAccentBar');
       if (!wrap || !HERO_SLIDES.length) return;
 
       let current = 0;
       let timer   = null;
 
-      /* Crea gli elementi img e i dots */
-      const imgs = HERO_SLIDES.map(function (src, i) {
+      /* Crea gli elementi img (dots rimossi: sostituiti dall'etichetta) */
+      const imgs = HERO_SLIDES.map(function (slide, i) {
         const img = document.createElement('img');
-        img.src       = src;
-        img.alt       = 'Portfolio Unoaventi Design Studio';
+        img.src       = slide.src;
+        img.alt       = 'Portfolio Unoaventi Design Studio — ' + slide.label;
         img.className = 'hero-slide-img' + (i === 0 ? ' is-active' : '');
         wrap.appendChild(img);
-
-        const dot = document.createElement('span');
-        dot.className = 'hero-slide-dot' + (i === 0 ? ' is-active' : '');
-        dotsWrap.appendChild(dot);
-
         return img;
       });
 
-      const dots = Array.from(dotsWrap.querySelectorAll('.hero-slide-dot'));
+      /* Aggiorna l'etichetta overlay con animazione fade */
+      function updateLabel(i) {
+        var slide = HERO_SLIDES[i];
+        var color = CAT_COLORS[slide.cat] || '#F4EFE4';
+
+        /* Fade out */
+        if (labelPill) {
+          labelPill.style.transition = 'opacity 0.3s';
+          labelPill.style.opacity    = '0';
+        }
+        if (labelText) {
+          labelText.style.transition = 'opacity 0.3s';
+          labelText.style.opacity    = '0';
+        }
+
+        setTimeout(function () {
+          /* Aggiorna contenuto e colore */
+          if (labelPill) {
+            labelPill.textContent        = slide.cat;
+            labelPill.style.background   = color;
+            labelPill.style.color        = (slide.cat === 'urbano') ? '#1A1612' : '#F4EFE4';
+          }
+          if (labelText) {
+            labelText.textContent = slide.label;
+          }
+          if (accentBar) {
+            accentBar.style.background = color;
+          }
+          /* Fade in */
+          if (labelPill) labelPill.style.opacity = '1';
+          if (labelText) labelText.style.opacity = '1';
+        }, 300);
+      }
+
+      /* Inizializza con la prima slide */
+      updateLabel(0);
 
       function goTo(next) {
-        const prev = current;
+        var prev = current;
         if (next === prev) return;
 
         imgs[next].classList.add('is-active');
-        dots[next].classList.add('is-active');
 
         setTimeout(function () {
           imgs[prev].classList.remove('is-active');
-          dots[prev].classList.remove('is-active');
         }, FADE_DURATION);
 
         current = next;
+        updateLabel(next);
       }
 
       function advance() {
@@ -322,8 +390,10 @@
 
       /* Pausa hover su desktop */
       var ss = document.getElementById('heroSlideshow');
-      ss.addEventListener('mouseenter', stopTimer);
-      ss.addEventListener('mouseleave', startTimer);
+      if (ss) {
+        ss.addEventListener('mouseenter', stopTimer);
+        ss.addEventListener('mouseleave', startTimer);
+      }
 
       /* Accessibilità: ferma se prefers-reduced-motion */
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

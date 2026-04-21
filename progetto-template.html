@@ -16,8 +16,8 @@
     ===================================================== -->
 
   <!-- [MODIFICA] Titolo del progetto nella scheda del browser -->
-  <meta name="description" content="Micro-bagno a Ferrara: 2.8 mq di design sostenibile. Soluzioni custom con doccia passante e vaso bidet Geberit. Progetto di Unoaventi Design Studio.">
-<title>Ferrara Compact Bath — Unoaventi Design Studio</title>
+  <meta name="description" content="Nome Progetto — Unoaventi Design Studio, Andrea Poletti">
+  <title>Nome Progetto — Unoaventi Design Studio</title>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/progetto.css">
@@ -47,25 +47,37 @@
     <a href="portfolio.html">← Portfolio</a>
 
     <!-- [MODIFICA] Categoria: scegli uno tra:
-         cat-effimera / cat-interni / cat-urbano / cat-prodotto / cat-grafica / cat-visioni -->
-    <span class="project-card-cat cat-interni">Interior design</span>
+         cat-fiera / cat-interni / cat-urbano / cat-prodotto -->
+    <span class="project-card-cat cat-fiera">Allestimento fieristico</span>
   </div>
 
-  <!-- ========== TESTATA PROGETTO ========== -->
- 
-	
-	<div class="progetto-hero">
-  <img src="img/progetti/bagno-interno-ferrara/cover-3.webp" alt="bagno in appartamento privato in centro a ferrara" class="progetto-hero-img">
-  <div class="progetto-hero-accent" style="background:var(--cmyk-c);"></div>
-  <div class="progetto-hero-overlay">
-    <div class="progetto-hero-meta">
-      <span class="progetto-anno">2022</span>
-      <span class="progetto-img-tipo">[ Render di progetto ]</span>
+  <!-- ========== HERO: cover + titolo sovrapposto ========== -->
+  <!--
+    [MODIFICA] Tre cose da cambiare qui:
+    1. src dell'immagine
+    2. Anno, tipo immagine, titolo, sottotitolo
+    3. Il colore della barra in cima (progetto-hero-accent):
+       allestimento fieristico → var(--cmyk-c)   azzurro
+       interior design        → var(--cmyk-m)   magenta
+       arredo urbano          → var(--c-yel-dark) giallo
+       progetto visionario    → var(--inchiostro) nero
+  -->
+  <div class="progetto-hero">
+    <img src="img/progetti/nome-progetto/cover.webp" alt="Nome del Progetto" class="progetto-hero-img">
+    <div class="progetto-hero-accent" style="background:var(--cmyk-c);"></div>
+    <div class="progetto-hero-overlay">
+      <div class="progetto-hero-meta">
+        <!-- [MODIFICA] Anno -->
+        <span class="progetto-anno">2023</span>
+        <!-- [MODIFICA] Tipo: "[ Fotografie ]" / "[ Render ]" / "[ Render + Fotografie ]" -->
+        <span class="progetto-img-tipo">[ Render di presentazione cliente ]</span>
+      </div>
+      <!-- [MODIFICA] Titolo del progetto -->
+      <h1 class="progetto-titolo">Nome del Progetto</h1>
+      <!-- [MODIFICA] Sottotitolo / luogo / cliente -->
+      <p class="progetto-sottotitolo">Sottotitolo, luogo o cliente</p>
     </div>
-    <h1 class="progetto-titolo">Ristrutturazione di un piccolo bagno</h1>
-    <p class="progetto-sottotitolo">Uno spazio privo di standard da ripensare, Ferrara</p>
   </div>
-</div>
 
   <!-- ========== CORPO DEL PROGETTO ========== -->
   <div class="progetto-body">
@@ -75,17 +87,21 @@
 
       <!-- [MODIFICA] Descrizione principale del progetto.
            Puoi usare più paragrafi <p>...</p> -->
-     <p>
-    Nel cuore storico di Ferrara, la sfida è stata trasformare un vincolo dimensionale estremo in un'esperienza di benessere. Con soli <strong>2,8 metri quadrati</strong> a disposizione, il progetto abbandona gli standard convenzionali per abbracciare una logica di ottimizzazione totale.
-  </p>
-  <p>
-    L'innovazione risiede nella <strong>doccia passante</strong>: un elemento dinamico che, grazie a un sistema di ante in cristallo incernierate, funge da "bussola" distributiva. Questa soluzione permette di separare la zona lavabo dall'area riservata del WC, creando un antibagno funzionale che scompare quando non necessario.
-  </p>
+      <p>
+        Descrizione del progetto. Racconta il brief, il contesto, le sfide progettuali.
+        Puoi essere libero nel tono — ironico, diretto, personale. Questo è il tuo portfolio,
+        non una scheda tecnica.
+      </p>
+      <p>
+        Secondo paragrafo se serve. Approfondimento sulle scelte progettuali,
+        sui materiali, sulle soluzioni adottate.
+      </p>
 
       <!-- [MODIFICA] Nota opzionale sul tipo di documentazione.
            Cancella questo blocco se non serve. -->
       <div class="progetto-nota">
-        Le immagini mostrano i rendering di progetto e la foto dello spazio preesistente.
+        Le immagini mostrano il progetto di presentazione al cliente.
+        Lo stand realizzato ne riprende l'impostazione con alcune variazioni.
       </div>
 
     </div>
@@ -96,39 +112,39 @@
       <!-- [MODIFICA] Anno -->
       <div class="scheda-row">
         <span class="scheda-label">Anno</span>
-        <span class="scheda-value">2022</span>
+        <span class="scheda-value">2023</span>
       </div>
 
       <!-- [MODIFICA] Cliente (opzionale, scrivi "—" se non vuoi indicarlo) -->
       <div class="scheda-row">
         <span class="scheda-label">Cliente</span>
-        <span class="scheda-value">Cliente privato</span>
+        <span class="scheda-value">Nome cliente</span>
       </div>
 
-      <!-- [MODIFICA] Categoria: Architettura effimera / Interior design /
-           Arredo urbano / Design di prodotto / Grafica & comunicazione / Progetti visionari -->
+      <!-- [MODIFICA] Categoria: Allestimento fieristico / Interior design /
+           Arredo urbano / Design di prodotto -->
       <div class="scheda-row">
         <span class="scheda-label">Categoria</span>
-        <span class="scheda-value">Interior design</span>
+        <span class="scheda-value">Allestimento fieristico</span>
       </div>
 
       <!-- [MODIFICA] Luogo -->
       <div class="scheda-row">
         <span class="scheda-label">Luogo</span>
-        <span class="scheda-value">Ferrara</span>
+        <span class="scheda-value">Bologna</span>
       </div>
 
       <!-- [MODIFICA] Dimensione/superficie (opzionale, cancella se non serve) -->
       <div class="scheda-row">
         <span class="scheda-label">Superficie</span>
-        <span class="scheda-value">2,8 m²</span>
+        <span class="scheda-value">xx m²</span>
       </div>
 
       <!-- [MODIFICA] Tag sostenibilità: mostra solo se il progetto è sostenibile.
            Cancella questo blocco se non pertinente. -->
       <div class="scheda-row scheda-sost">
         <span class="scheda-label">Sostenibilità</span>
-        <span class="scheda-value scheda-sost-badge">Materiali scelti per durare nel tempo, maestranze locali&nbsp;&nbsp;</span>
+        <span class="scheda-value scheda-sost-badge">Zero rifiuti</span>
       </div>
 
     </div>
@@ -164,33 +180,13 @@
   -->
   <div class="progetto-galleria galleria-2">
 
-      <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/01.webp" alt="Descrizione 2">
+    <figure class="galleria-item">
+      <img src="img/progetti/nome-progetto/01.jpg" alt="Descrizione 1">
       <figcaption>Didascalia al passaggio del mouse</figcaption>
     </figure>
-	  
-	  <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/03.webp" alt="Descrizione 2">
-      <figcaption>Didascalia al passaggio del mouse</figcaption>
-    </figure>
-	  
-	  <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/04.webp" alt="Descrizione 2">
-      <figcaption>Didascalia al passaggio del mouse</figcaption>
-    </figure>
-	  
-	  <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/05.webp" alt="Descrizione 2">
-      <figcaption>Didascalia al passaggio del mouse</figcaption>
-    </figure>
-	  
-	  <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/06.webp" alt="Descrizione 2">
-      <figcaption>Didascalia al passaggio del mouse</figcaption>
-    </figure>
-	  
-	  <figure class="galleria-item">
-      <img src="img/progetti/bagno-interno-ferrara/02.webp" alt="Descrizione 2">
+
+    <figure class="galleria-item">
+      <img src="img/progetti/nome-progetto/02.jpg" alt="Descrizione 2">
       <figcaption>Didascalia al passaggio del mouse</figcaption>
     </figure>
 
@@ -202,16 +198,16 @@
   <nav class="progetto-nav">
     <!-- [MODIFICA] Sostituisci href e testo con il progetto precedente.
          Se non c'è un progetto precedente, cancella questo <a> -->
-    <a href="progetto-vittys-store.html" class="progetto-nav-prev">
+    <a href="progetto-precedente.html" class="progetto-nav-prev">
       <span class="mono">← Precedente</span>
-      <span class="progetto-nav-title">vittys' store&nbsp;</span>
+      <span class="progetto-nav-title">Nome progetto precedente</span>
     </a>
 
     <!-- [MODIFICA] Sostituisci href e testo con il progetto successivo.
          Se non c'è un progetto successivo, cancella questo <a> -->
-    <a href="progetto-impianti-pubblicità-esterna.html" class="progetto-nav-next">
+    <a href="progetto-successivo.html" class="progetto-nav-next">
       <span class="mono">Successivo →</span>
-      <span class="progetto-nav-title">impianti pubblicità esterna&nbsp;</span>
+      <span class="progetto-nav-title">Nome progetto successivo</span>
     </a>
   </nav>
 
@@ -236,5 +232,12 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    /* Effetto respiro hero: l'immagine si "assesta" dopo il caricamento */
+    document.addEventListener('DOMContentLoaded', function() {
+      var hero = document.querySelector('.progetto-hero');
+      if (hero) { requestAnimationFrame(function() { hero.classList.add('is-ready'); }); }
+    });
+  </script>
 </body>
 </html>

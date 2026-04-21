@@ -3,6 +3,9 @@
    1. Video YouTube responsive (fix desktop)
    2. Hamburger menu mobile
    3. Lightbox galleria immagini
+   4. Fix hero mobile — portrait e landscape
+   5. Hero slideshow — fade automatico
+   6. Hero overlay — testi e gradiente aggiornati
    ============================================ */
 
 
@@ -248,48 +251,36 @@
    4. FIX HERO MOBILE — portrait e landscape
    ============================================ */
 
-/* Su tablet e mobile: rimuove il max-height che
-   tronca il layout impilato e fa overflow */
 @media (max-width: 900px) {
   .hero {
     max-height: none;
   }
 
-  /* L'immagine featured non deve essere troppo alta
-     su tablet in portrait — la sezione è già 1fr */
   .hero-featured {
     min-height: 300px;
   }
 }
 
 @media (max-width: 600px) {
-  /* Rimuove il max-height che causa il troncamento
-     e il sovrapposto degli elementi in verticale */
   .hero {
     max-height: none;
     min-height: auto;
   }
 
-  /* Titolo hero: riduce la dimensione minima
-     per evitare overflow laterale */
   .hero-title {
     font-size: clamp(56px, 18vw, 100px);
     margin-bottom: 24px;
   }
 
-  /* Sezione sinistra: padding più stretto */
   .hero-left {
     padding: 40px 20px 36px;
   }
 
-  /* Immagine featured: altezza fissa ragionevole
-     su mobile portrait */
   .hero-featured {
     min-height: 260px;
     max-height: 320px;
   }
 
-  /* Stats row: 3 colonne compatte */
   .hero-stats {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -307,20 +298,17 @@
     letter-spacing: 0.08em;
   }
 
-  /* Testo descrizione: dimensione mobile */
   .hero-desc {
     font-size: 14px;
   }
 
-  /* Tags: più compatti */
   .hero-tags .tag {
     font-size: 9px;
     padding: 4px 10px;
   }
 }
 
-/* Landscape mobile (telefono in orizzontale):
-   layout a due colonne ma hero compatto */
+/* Landscape mobile */
 @media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
   .hero {
     grid-template-columns: 1fr 1fr;
@@ -343,8 +331,6 @@
     min-height: 200px;
   }
 
-  /* Nasconde le stats in landscape stretto
-     per evitare overflow */
   .hero-stats {
     display: none;
   }
@@ -355,15 +341,10 @@
    5. HERO SLIDESHOW — fade automatico
    ============================================ */
 
-/* Contenitore slideshow: stessi stili di hero-featured
-   ma non è un <a> quindi non ha cursor pointer di default */
 .hero-slideshow {
   cursor: default;
-  /* rimuove lo sfondo placeholder a scacchi
-     che era pensato per un'immagine sola */
 }
 
-/* Il wrapper che contiene tutte le img sovrapposte */
 .hero-slides-wrap {
   position: absolute;
   inset: 0;
@@ -379,45 +360,20 @@
   object-fit: cover;
   object-position: center center;
   opacity: 0;
-  transition: opacity 0.9s ease-in-out;
   display: block;
-  /* Leggero zoom Ken Burns opzionale —
-     commenta le due righe sotto per disattivarlo */
+  /* Ken Burns leggero */
   transform: scale(1.04);
   transition: opacity 0.9s ease-in-out, transform 6s ease-out;
 }
 
-/* Slide attiva: visibile + zoom si ferma */
+/* Slide attiva */
 .hero-slide-img.is-active {
-  opacity: 0.78;    /* stesso livello di opacità dell'immagine originale */
+  opacity: 1;
   transform: scale(1);
 }
 
-/* Dots indicatori */
-.hero-slide-dots {
-  position: absolute;
-  bottom: 68px;      /* sopra l'overlay testo */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.hero-slide-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(244, 239, 228, 0.35);
-  transition: background 0.3s, transform 0.3s;
-  display: block;
-}
-
-.hero-slide-dot.is-active {
-  background: var(--cmyk-m);
-  transform: scale(1.4);
-}
+/* Dots indicatori — RIMOSSI: sostituiti da etichetta dinamica */
+/* .hero-slide-dots, .hero-slide-dot → vedi #heroSlideLabel */
 
 /* L'overlay testo deve stare sopra le slide */
 .hero-slideshow .hero-featured-overlay {
@@ -425,20 +381,249 @@
   z-index: 3;
 }
 
-/* Il pattern bg deve stare sopra le immagini
-   per dare la texture carta sopra le foto */
+/* Il pattern bg sopra le immagini per la texture carta */
 .hero-slideshow .hero-featured-bg {
   z-index: 1;
   pointer-events: none;
+  opacity: 0.25;   /* ridotto: non deve coprire l'immagine */
 }
 
-/* Su mobile: dots un po' più grandi e comodi */
+@media (max-width: 900px) {
+  /* placeholder — etichetta dinamica non necessita aggiustamenti specifici tablet */
+}
+
+
+/* ============================================
+   6. HERO OVERLAY — testi e gradiente
+   ============================================ */
+
+/*
+   Gradiente scuro dal basso: l'immagine respira in cima,
+   il testo ha uno sfondo sicuro dove serve.
+   Sostituisce il vecchio gradiente carta chiaro che
+   "sbiadiva" l'immagine e indeboliva il testo.
+*/
+.hero-featured::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 22, 18, 0.04) 0%,
+    rgba(26, 22, 18, 0.10) 35%,
+    rgba(26, 22, 18, 0.68) 75%,
+    rgba(26, 22, 18, 0.82) 100%
+  );
+  pointer-events: none;
+}
+
+/* L'overlay testo sale sopra lo pseudo-element */
+.hero-featured .hero-featured-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 0 32px 28px;
+  /* Rimuove il vecchio background carta */
+  background: none;
+}
+
+/* Barra accent — colore aggiornato via JS ad ogni slide */
+.hero-overlay-accent-bar {
+  width: 28px;
+  height: 3px;
+  background: var(--cmyk-m); /* colore iniziale, sovrascitto da JS */
+  margin-bottom: 14px;
+  transition: background 0.4s ease;
+}
+
+/* Titolo grande, bianco carta */
+.hero-featured-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--carta);
+  margin-bottom: 16px;
+}
+
+/* Punto dopo il titolo — colore sincronizzato alla barra via JS */
+.hero-title-dot {
+  color: var(--cmyk-m);
+}
+
+/* ---- ETICHETTA DINAMICA PER SLIDE ---- */
+/*
+  Sostituisce le pill statiche: mostra la categoria
+  della slide corrente con il suo colore CMYK.
+  Struttura HTML:
+    <div class="hero-slide-label-wrap" id="heroSlideLabel">
+      <span class="hero-slide-label-pill" id="heroSlideLabelPill">effimera</span>
+      <span class="hero-slide-label-text" id="heroSlideLabelText">Architetture effimere</span>
+    </div>
+*/
+.hero-slide-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Badge categoria — background e color impostati da JS */
+.hero-slide-label-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  background: var(--cmyk-m); /* sovrascitto da JS */
+  color: var(--carta);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Testo descrittivo della categoria */
+.hero-slide-label-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 228, 0.65);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Pill statiche vecchie — mantenute per retrocompatibilità ma nascoste */
+.hero-overlay-pills       { display: none; }
+.hero-overlay-pill        { display: none; }
+.hero-overlay-pill--c     { display: none; }
+.hero-overlay-pill--m     { display: none; }
+.hero-overlay-pill--y     { display: none; }
+
+/* Rimuove label e sub-label della vecchia struttura
+   (rimangono nel DOM ma non si vedono più — zero breaking) */
+.hero-featured-label,
+.hero-featured-year {
+  display: none;
+}
+
+/* Mobile: adatta i testi overlay */
 @media (max-width: 600px) {
-  .hero-slide-dot {
-    width: 7px;
-    height: 7px;
+  .hero-featured .hero-featured-overlay {
+    padding: 0 20px 20px;
   }
+
+  .hero-featured-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .hero-overlay-accent-bar {
+    margin-bottom: 10px;
+  }
+
+  .hero-slide-label-pill {
+    font-size: 8px;
+    padding: 2px 8px;
+  }
+
+  .hero-slide-label-text {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 900px) {
   .hero-slide-dots {
-    bottom: 56px;
+    bottom: 66px;
   }
+}
+
+
+/* ============================================
+   7. HERO TAG SINISTRA — hover colore categoria
+   ============================================ */
+
+/*
+  I tag nella colonna sinistra dell'hero mostrano
+  tutte le categorie. Al hover il bordo inferiore
+  (l'underline animato via ::after in style.css)
+  prende il colore specifico della categoria invece
+  del nero generico.
+
+  Struttura HTML:
+    <span class="tag tag-c">Architetture effimere</span>
+    <span class="tag tag-m">Interior design</span>
+    <span class="tag tag-y">Arredo urbano</span>
+    <span class="tag tag-k">Design di prodotto</span>    ← aggiunto
+    <span class="tag tag-p">Grafica & comunicazione</span> ← aggiunto
+    <span class="tag tag-v">Progetti visionari</span>    ← aggiunto
+*/
+
+/* tag-c → cyan: già gestito da style.css (.tag.tag-c) */
+/* tag-m → magenta: già gestito da style.css (.tag.tag-m) */
+/* tag-y → giallo: già gestito da style.css (.tag.tag-y) */
+
+/* Hover bordo + testo per i tag colorati esistenti */
+.hero-tags .tag.tag-c:hover {
+  background: var(--cmyk-c);
+  border-color: var(--cmyk-c);
+  color: var(--carta);
+}
+
+.hero-tags .tag.tag-m:hover {
+  background: var(--cmyk-m);
+  border-color: var(--cmyk-m);
+  color: var(--carta);
+}
+
+.hero-tags .tag.tag-y:hover {
+  background: var(--c-yel-dark);
+  border-color: var(--c-yel-dark);
+  color: var(--inchiostro);
+}
+
+/* Nuovi tag per le categorie senza classe CMYK dedicata */
+
+/* Design di prodotto — grigio medio */
+.tag.tag-k {
+  border-color: #6B6560;
+  color: #6B6560;
+}
+.tag.tag-k:hover {
+  background: #6B6560;
+  border-color: #6B6560;
+  color: var(--carta);
+}
+
+/* Grafica & comunicazione — viola Pantone */
+.tag.tag-p {
+  border-color: var(--pantone);
+  color: var(--pantone-dark);
+}
+.tag.tag-p:hover {
+  background: var(--pantone);
+  border-color: var(--pantone);
+  color: var(--carta);
+}
+
+/* Progetti visionari — nero K */
+.tag.tag-v {
+  border-color: var(--inchiostro);
+  color: var(--inchiostro);
+}
+.tag.tag-v:hover {
+  background: var(--inchiostro);
+  border-color: var(--inchiostro);
+  color: var(--carta);
+}
+
+/* Sostenibilità e Didattica — hover neutro carta scura
+   (non sono categorie progetto, restano neutrali) */
+.hero-tags .tag:not([class*="tag-"]):hover,
+.hero-tags .tag:not(.tag-c):not(.tag-m):not(.tag-y):not(.tag-k):not(.tag-p):not(.tag-v):hover {
+  background: var(--inchiostro);
+  border-color: var(--inchiostro);
+  color: var(--carta);
 }
