@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generatore Progetto — Unoaventi Design Studio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  :root {
+    --carta: #F4EFE4; --carta-dark: #E8E0D0; --carta-mid: #D4C9B4;
+    --inchiostro: #1A1612; --inchiostro2: #3D3630;
+    --cmyk-c: #00AEEF; --cmyk-m: #EC008C; --cmyk-y: #F5C800; --c-yel-dark: #C4A000;
+    --pantone: #8B2FC9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--carta); color: var(--inchiostro); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
+
+  /* NAV */
+  .gen-nav { background: var(--inchiostro); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .gen-nav-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--carta); letter-spacing: 0.05em; }
+  .gen-nav-sub { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--cmyk-m); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* LAYOUT */
+  .gen-wrap { display: grid; grid-template-columns: 420px 1fr; min-height: calc(100vh - 56px); }
+  .gen-form-col { padding: 40px 32px; border-right: 1.5px solid var(--inchiostro); overflow-y: auto; }
+  .gen-out-col { padding: 40px 32px; background: var(--carta-dark); display: flex; flex-direction: column; gap: 16px; }
+
+  /* SEZIONI FORM */
+  .gen-section { margin-bottom: 32px; }
+  .gen-section-title {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--inchiostro2); opacity: 0.5; margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--carta-mid);
+  }
+  .gen-field { margin-bottom: 16px; }
+  .gen-label { display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--inchiostro2); margin-bottom: 6px; }
+  .gen-label span { color: var(--cmyk-m); }
+  .gen-input, .gen-select, .gen-textarea {
+    width: 100%; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    border: 1.5px solid var(--carta-mid); background: var(--carta); color: var(--inchiostro);
+    outline: none; transition: border-color 0.15s;
+  }
+  .gen-input:focus, .gen-select:focus, .gen-textarea:focus { border-color: var(--cmyk-c); }
+  .gen-textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
+  .gen-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A1612' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+  .gen-hint { font-size: 11px; color: var(--inchiostro2); opacity: 0.5; margin-top: 4px; line-height: 1.5; }
+
+  /* GALLERIA COUNTER */
+  .galleria-controls { display: flex; align-items: center; gap: 12px; }
+  .galleria-btn { width: 32px; height: 32px; border: 1.5px solid var(--inchiostro); background: transparent; cursor: pointer; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; color: var(--inchiostro); transition: background 0.15s; }
+  .galleria-btn:hover { background: var(--inchiostro); color: var(--carta); }
+  .galleria-count { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; min-width: 32px; text-align: center; }
+
+  /* CHECKBOX SOSTENIBILITÀ */
+  .gen-checkbox-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .gen-checkbox-row input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--cmyk-c); }
+  .gen-checkbox-row label { font-size: 13px; color: var(--inchiostro2); cursor: pointer; }
+
+  /* FORMATO GALLERIA */
+  .format-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .format-btn { padding: 6px 14px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border: 1.5px solid var(--carta-mid); background: transparent; cursor: pointer; color: var(--inchiostro2); transition: all 0.15s; }
+  .format-btn.active { border-color: var(--cmyk-c); color: var(--cmyk-c); background: rgba(0,174,239,0.06); }
+
+  /* BOTTONE GENERA */
+  .gen-btn {
+    width: 100%; padding: 16px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; background: var(--cmyk-m); color: var(--carta); border: none; cursor: pointer;
+    transition: background 0.15s; margin-top: 8px;
+  }
+  .gen-btn:hover { background: var(--inchiostro); }
+  .gen-btn:active { transform: scale(0.99); }
+
+  /* OUTPUT */
+  .gen-out-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--inchiostro2); opacity: 0.5; }
+  .gen-out-area {
+    width: 100%; min-height: 400px; flex: 1; padding: 20px; font-family: 'DM Mono', monospace; font-size: 12px;
+    line-height: 1.7; border: 1.5px solid var(--carta-mid); background: var(--carta); color: var(--inchiostro);
+    resize: vertical; outline: none; white-space: pre; overflow-x: auto;
+  }
+  .gen-copy-btn {
+    align-self: flex-start; padding: 10px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; background: var(--inchiostro); color: var(--carta); border: none; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .gen-copy-btn:hover { background: var(--cmyk-c); }
+  .gen-copy-btn.copied { background: var(--cmyk-c); }
+  .gen-preview-link { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--cmyk-c); letter-spacing: 0.1em; opacity: 0.7; }
+
+  /* COLORE CATEGORIA PREVIEW */
+  .cat-preview { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .cat-chip { padding: 4px 12px; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  @media (max-width: 900px) {
+    .gen-wrap { grid-template-columns: 1fr; }
+    .gen-form-col { border-right: none; border-bottom: 1.5px solid var(--inchiostro); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="gen-nav">
+  <div>
+    <div class="gen-nav-title">Generatore Progetto</div>
+    <div class="gen-nav-sub">Unoaventi Design Studio</div>
+  </div>
+  <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(244,239,228,0.35); letter-spacing:0.1em;">Compila → Genera → Copia → Incolla in Dreamweaver</div>
+</nav>
+
+<div class="gen-wrap">
+
+  <!-- ===== FORM ===== -->
+  <div class="gen-form-col">
+
+    <!-- META -->
+    <div class="gen-section">
+      <div class="gen-section-title">01 · Meta & identificazione</div>
+
+      <div class="gen-field">
+        <label class="gen-label">Nome file <span>*</span></label>
+        <input class="gen-input" id="f-filename" placeholder="es. progetto-sana-2019" type="text">
+        <div class="gen-hint">Solo lettere minuscole e trattini — diventa il nome del file .html</div>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Titolo progetto <span>*</span></label>
+        <input class="gen-input" id="f-titolo" placeholder="es. SANA 2019" type="text">
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Sottotitolo / luogo / cliente</label>
+        <input class="gen-input" id="f-sottotitolo" placeholder="es. Salone Internazionale del Biologico, Bologna" type="text">
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Anno <span>*</span></label>
+        <input class="gen-input" id="f-anno" placeholder="es. 2019" type="text" style="max-width:120px;">
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Meta description <span>(max 155 caratteri)</span></label>
+        <input class="gen-input" id="f-meta" placeholder="es. Stand SANA 2019 per ICEA — Unoaventi Design Studio" type="text" maxlength="155">
+        <div class="gen-hint" id="meta-count">0 / 155 caratteri</div>
+      </div>
+    </div>
+
+    <!-- CATEGORIA -->
+    <div class="gen-section">
+      <div class="gen-section-title">02 · Categoria & colore</div>
+
+      <div class="gen-field">
+        <label class="gen-label">Categoria <span>*</span></label>
+        <select class="gen-select" id="f-cat">
+          <option value="effimera">Architettura effimera</option>
+          <option value="interni">Interior design</option>
+          <option value="urbano">Arredo urbano</option>
+          <option value="prodotto">Design di prodotto</option>
+          <option value="grafica">Grafica &amp; comunicazione</option>
+          <option value="visioni">Progetti visionari</option>
+        </select>
+        <div class="cat-preview" id="catPreview"></div>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Tipo immagine cover</label>
+        <select class="gen-select" id="f-imgtype">
+          <option value="[ Render di presentazione cliente ]">Render di presentazione cliente</option>
+          <option value="[ Fotografie ]">Fotografie</option>
+          <option value="[ Render + Fotografie ]">Render + Fotografie</option>
+          <option value="[ Render ]">Render</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TESTO -->
+    <div class="gen-section">
+      <div class="gen-section-title">03 · Testo descrittivo</div>
+
+      <div class="gen-field">
+        <label class="gen-label">Paragrafo principale <span>*</span></label>
+        <textarea class="gen-textarea" id="f-p1" placeholder="Racconta il brief, il contesto, le sfide progettuali. Puoi essere ironico, diretto, personale."></textarea>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Secondo paragrafo</label>
+        <textarea class="gen-textarea" id="f-p2" placeholder="Approfondimento sulle scelte progettuali, materiali, soluzioni..."></textarea>
+        <div class="gen-hint">Opzionale — lascia vuoto se non serve</div>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Nota documentazione</label>
+        <input class="gen-input" id="f-nota" placeholder="es. Le immagini mostrano il render di presentazione al cliente." type="text">
+        <div class="gen-hint">Opzionale — lascia vuoto per non includerla</div>
+      </div>
+    </div>
+
+    <!-- SCHEDA TECNICA -->
+    <div class="gen-section">
+      <div class="gen-section-title">04 · Scheda tecnica</div>
+
+      <div class="gen-field">
+        <label class="gen-label">Cliente</label>
+        <input class="gen-input" id="f-cliente" placeholder="es. ICEA (scrivi — se non vuoi indicarlo)" type="text">
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Luogo</label>
+        <input class="gen-input" id="f-luogo" placeholder="es. BolognaFiere" type="text">
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Superficie</label>
+        <input class="gen-input" id="f-sup" placeholder="es. 24 m²" type="text" style="max-width:140px;">
+        <div class="gen-hint">Lascia vuoto per non includerla</div>
+      </div>
+
+      <div class="gen-checkbox-row">
+        <input type="checkbox" id="f-sost" value="1">
+        <label for="f-sost">Includi badge sostenibilità</label>
+      </div>
+      <div class="gen-field" id="sost-wrap" style="display:none; margin-top:8px;">
+        <input class="gen-input" id="f-sost-label" placeholder="es. Zero rifiuti" type="text">
+      </div>
+    </div>
+
+    <!-- GALLERIA -->
+    <div class="gen-section">
+      <div class="gen-section-title">05 · Galleria immagini</div>
+
+      <div class="gen-field">
+        <label class="gen-label">Numero immagini (esclusa cover)</label>
+        <div class="galleria-controls">
+          <button class="galleria-btn" id="gal-minus">−</button>
+          <span class="galleria-count" id="gal-num">2</span>
+          <button class="galleria-btn" id="gal-plus">+</button>
+        </div>
+        <div class="gen-hint">Max 5 immagini</div>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Formato immagini</label>
+        <div class="format-btns" id="format-btns">
+          <button class="format-btn active" data-val="">Tutte orizzontali</button>
+          <button class="format-btn" data-val="mix-v">Miste (orizzontali + verticali)</button>
+          <button class="format-btn" data-val="tutte-v">Tutte verticali</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGAZIONE -->
+    <div class="gen-section">
+      <div class="gen-section-title">06 · Navigazione tra progetti</div>
+
+      <div class="gen-field">
+        <label class="gen-label">← Progetto precedente</label>
+        <div style="display:flex; gap:8px;">
+          <input class="gen-input" id="f-prev-href" placeholder="progetto-nome.html" type="text" style="flex:1;">
+          <input class="gen-input" id="f-prev-title" placeholder="Nome progetto" type="text" style="flex:1;">
+        </div>
+        <div class="gen-hint">Lascia vuoti per non includere il link</div>
+      </div>
+
+      <div class="gen-field">
+        <label class="gen-label">Progetto successivo →</label>
+        <div style="display:flex; gap:8px;">
+          <input class="gen-input" id="f-next-href" placeholder="progetto-nome.html" type="text" style="flex:1;">
+          <input class="gen-input" id="f-next-title" placeholder="Nome progetto" type="text" style="flex:1;">
+        </div>
+        <div class="gen-hint">Lascia vuoti per non includere il link</div>
+      </div>
+    </div>
+
+    <button class="gen-btn" id="genBtn">Genera codice HTML →</button>
+
+  </div>
+
+  <!-- ===== OUTPUT ===== -->
+  <div class="gen-out-col">
+    <div class="gen-out-label">Codice generato</div>
+    <div style="font-size:12px; color:var(--inchiostro2); opacity:0.6; font-family:'DM Mono',monospace; line-height:1.6;">
+      1. Compila il form a sinistra<br>
+      2. Clicca "Genera codice HTML"<br>
+      3. Copia tutto con il bottone in basso<br>
+      4. In Dreamweaver: File → Nuovo → Incolla il codice in vista Codice<br>
+      5. Salva come <strong id="filename-preview">progetto-nome.html</strong>
+    </div>
+    <textarea class="gen-out-area" id="outputArea" readonly placeholder="Il codice apparirà qui..."></textarea>
+    <button class="gen-copy-btn" id="copyBtn">Copia tutto il codice</button>
+  </div>
+
+</div>
+
+<script>
+  /* ── Mappa categorie ── */
+  var CAT = {
+    effimera: { label: 'Architettura effimera', cls: 'cat-effimera', color: '#00AEEF', accent: 'var(--cmyk-c)' },
+    interni:  { label: 'Interior design',       cls: 'cat-interni',  color: '#EC008C', accent: 'var(--cmyk-m)' },
+    urbano:   { label: 'Arredo urbano',          cls: 'cat-urbano',   color: '#C4A000', accent: 'var(--c-yel-dark)' },
+    prodotto: { label: 'Design di prodotto',     cls: 'cat-prodotto', color: '#6B6560', accent: '#6B6560' },
+    grafica:  { label: 'Grafica & comunicazione',cls: 'cat-grafica',  color: '#8B2FC9', accent: 'var(--pantone)' },
+    visioni:  { label: 'Progetti visionari',     cls: 'cat-visioni',  color: '#1A1612', accent: 'var(--inchiostro)' },
+  };
+
+  var galNum = 2;
+  var galFormat = '';
+
+  /* Anteprima categoria */
+  function updateCatPreview() {
+    var cat = document.getElementById('f-cat').value;
+    var c = CAT[cat];
+    var el = document.getElementById('catPreview');
+    el.innerHTML = '<span class="cat-chip" style="background:' + c.color + '; color:#F4EFE4;">' + c.label + '</span>'
+      + '<span style="font-family:\'DM Mono\',monospace; font-size:10px; color:var(--inchiostro2); opacity:0.5; align-self:center; margin-left:4px;">→ ' + c.cls + '</span>';
+  }
+  document.getElementById('f-cat').addEventListener('change', updateCatPreview);
+  updateCatPreview();
+
+  /* Meta counter */
+  document.getElementById('f-meta').addEventListener('input', function() {
+    document.getElementById('meta-count').textContent = this.value.length + ' / 155 caratteri';
+  });
+
+  /* Filename preview */
+  document.getElementById('f-filename').addEventListener('input', function() {
+    var v = this.value || 'progetto-nome';
+    document.getElementById('filename-preview').textContent = v + '.html';
+  });
+
+  /* Sostenibilità toggle */
+  document.getElementById('f-sost').addEventListener('change', function() {
+    document.getElementById('sost-wrap').style.display = this.checked ? '' : 'none';
+  });
+
+  /* Galleria counter */
+  document.getElementById('gal-minus').addEventListener('click', function() {
+    if (galNum > 1) { galNum--; document.getElementById('gal-num').textContent = galNum; }
+  });
+  document.getElementById('gal-plus').addEventListener('click', function() {
+    if (galNum < 5) { galNum++; document.getElementById('gal-num').textContent = galNum; }
+  });
+
+  /* Formato galleria */
+  document.getElementById('format-btns').addEventListener('click', function(e) {
+    var btn = e.target.closest('.format-btn');
+    if (!btn) return;
+    document.querySelectorAll('.format-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    galFormat = btn.dataset.val;
+  });
+
+  /* ── GENERA ── */
+  document.getElementById('genBtn').addEventListener('click', generate);
+
+  function esc(s) {
+    return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function generate() {
+    var filename  = document.getElementById('f-filename').value.trim() || 'progetto-nome';
+    var titolo    = document.getElementById('f-titolo').value.trim() || 'Nome del Progetto';
+    var sotto     = document.getElementById('f-sottotitolo').value.trim() || 'Sottotitolo, luogo o cliente';
+    var anno      = document.getElementById('f-anno').value.trim() || '2024';
+    var meta      = document.getElementById('f-meta').value.trim() || titolo + ' — Unoaventi Design Studio, Andrea Poletti';
+    var imgtype   = document.getElementById('f-imgtype').value;
+    var cat       = document.getElementById('f-cat').value;
+    var p1        = document.getElementById('f-p1').value.trim();
+    var p2        = document.getElementById('f-p2').value.trim();
+    var nota      = document.getElementById('f-nota').value.trim();
+    var cliente   = document.getElementById('f-cliente').value.trim();
+    var luogo     = document.getElementById('f-luogo').value.trim();
+    var sup       = document.getElementById('f-sup').value.trim();
+    var sostOn    = document.getElementById('f-sost').checked;
+    var sostLabel = document.getElementById('f-sost-label').value.trim() || 'Zero rifiuti';
+    var prevHref  = document.getElementById('f-prev-href').value.trim();
+    var prevTitle = document.getElementById('f-prev-title').value.trim();
+    var nextHref  = document.getElementById('f-next-href').value.trim();
+    var nextTitle = document.getElementById('f-next-title').value.trim();
+
+    var c = CAT[cat];
+    var galClass  = 'galleria-' + galNum + (galFormat ? ' ' + galFormat : '');
+    var imgFolder = 'img/progetti/' + filename + '/';
+
+    /* ── Blocchi condizionali ── */
+    var p2block = p2 ? '\n      <p>\n        ' + esc(p2) + '\n      </p>' : '';
+    var notablock = nota ? '\n      <div class="progetto-nota">\n        ' + esc(nota) + '\n      </div>' : '';
+    var clienteRow = cliente ? '\n      <div class="scheda-row">\n        <span class="scheda-label">Cliente</span>\n        <span class="scheda-value">' + esc(cliente) + '</span>\n      </div>' : '';
+    var luogoRow = luogo ? '\n      <div class="scheda-row">\n        <span class="scheda-label">Luogo</span>\n        <span class="scheda-value">' + esc(luogo) + '</span>\n      </div>' : '';
+    var supRow = sup ? '\n      <div class="scheda-row">\n        <span class="scheda-label">Superficie</span>\n        <span class="scheda-value">' + esc(sup) + '</span>\n      </div>' : '';
+    var sostRow = sostOn ? '\n      <div class="scheda-row scheda-sost">\n        <span class="scheda-label">Sostenibilità</span>\n        <span class="scheda-value scheda-sost-badge">' + esc(sostLabel) + '</span>\n      </div>' : '';
+
+    /* Galleria figure */
+    var figures = '';
+    for (var i = 1; i <= galNum; i++) {
+      var n = i < 10 ? '0' + i : '' + i;
+      figures += '\n    <figure class="galleria-item">\n      <img src="' + imgFolder + n + '.webp" alt="' + esc(titolo) + ' — immagine ' + i + '">\n      <figcaption>Didascalia al passaggio del mouse</figcaption>\n    </figure>';
+    }
+
+    /* Navigazione */
+    var navPrev = prevHref && prevTitle
+      ? '\n    <a href="' + esc(prevHref) + '" class="progetto-nav-prev">\n      <span class="mono">← Precedente</span>\n      <span class="progetto-nav-title">' + esc(prevTitle) + '</span>\n    </a>'
+      : '';
+    var navNext = nextHref && nextTitle
+      ? '\n    <a href="' + esc(nextHref) + '" class="progetto-nav-next">\n      <span class="mono">Successivo →</span>\n      <span class="progetto-nav-title">' + esc(nextTitle) + '</span>\n    </a>'
+      : '';
+
+    var code = '<!DOCTYPE html>\n<html lang="it">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <meta name="description" content="' + esc(meta) + '">\n  <title>' + esc(titolo) + ' — Unoaventi Design Studio</title>\n  <link rel="stylesheet" href="css/style.css">\n  <link rel="stylesheet" href="css/progetto.css">\n  <link rel="stylesheet" href="css/fixes.css">\n</head>\n<body>\n\n  <nav class="nav">\n    <a href="index.html" class="nav-logo">\n      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">\n      <div class="nav-logo-text">\n        <span class="nav-studio">Unoaventi Design Studio</span>\n        <span class="nav-name">Andrea Poletti</span>\n      </div>\n    </a>\n    <div class="nav-links">\n      <a href="portfolio.html">Portfolio</a>\n      <a href="about.html">Chi sono</a>\n      <a href="blog.html">Blog</a>\n      <a href="contatti.html">Contatti</a>\n    </div>\n  </nav>\n\n  <div class="progetto-breadcrumb">\n    <a href="portfolio.html">\u2190 Portfolio</a>\n    <span class="project-card-cat ' + c.cls + '">' + c.label + '</span>\n  </div>\n\n  <div class="progetto-hero">\n    <img src="' + imgFolder + 'cover.webp" alt="' + esc(titolo) + '" class="progetto-hero-img">\n    <div class="progetto-hero-accent" style="background:' + c.accent + ';"></div>\n    <div class="progetto-hero-overlay">\n      <div class="progetto-hero-meta">\n        <span class="progetto-anno">' + esc(anno) + '</span>\n        <span class="progetto-img-tipo">' + imgtype + '</span>\n      </div>\n      <h1 class="progetto-titolo">' + esc(titolo) + '</h1>\n      <p class="progetto-sottotitolo">' + esc(sotto) + '</p>\n    </div>\n  </div>\n\n  <div class="progetto-body">\n    <div class="progetto-testo">\n      <p>\n        ' + esc(p1 || 'Descrizione del progetto.') + '\n      </p>' + p2block + notablock + '\n    </div>\n    <div class="progetto-scheda">\n      <div class="scheda-row">\n        <span class="scheda-label">Anno</span>\n        <span class="scheda-value">' + esc(anno) + '</span>\n      </div>' + clienteRow + '\n      <div class="scheda-row">\n        <span class="scheda-label">Categoria</span>\n        <span class="scheda-value">' + c.label + '</span>\n      </div>' + luogoRow + supRow + sostRow + '\n    </div>\n  </div>\n\n  <div class="progetto-galleria ' + galClass + '">' + figures + '\n  </div>\n\n  <nav class="progetto-nav">' + navPrev + navNext + '\n  </nav>\n\n  <footer>\n    <div class="footer-left">\n      <span class="footer-studio">Unoaventi Design Studio \u00b7 Andrea Poletti</span>\n      <span class="footer-copy">\u00a9 2024 \u00b7 unoaventi.it \u00b7 Scala 1:20</span>\n    </div>\n    <div class="footer-dots">\n      <div class="footer-dot" style="background:var(--cmyk-c);"></div>\n      <div class="footer-dot" style="background:var(--cmyk-m);"></div>\n      <div class="footer-dot" style="background:var(--cmyk-y);"></div>\n      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>\n    </div>\n    <div class="footer-links">\n      <a href="portfolio.html">Portfolio</a>\n      <a href="about.html">Chi sono</a>\n      <a href="blog.html">Blog</a>\n      <a href="contatti.html">Contatti</a>\n    </div>\n  </footer>\n\n  <script src="js/main.js"><\/script>\n  <script>\n    document.addEventListener(\'DOMContentLoaded\', function() {\n      var hero = document.querySelector(\'.progetto-hero\');\n      if (hero) { requestAnimationFrame(function() { hero.classList.add(\'is-ready\'); }); }\n    });\n  <\/script>\n</body>\n</html>';
+
+    document.getElementById('outputArea').value = code;
+    document.getElementById('filename-preview').textContent = filename + '.html';
+
+    /* Scroll to output su mobile */
+    document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* Copia */
+  document.getElementById('copyBtn').addEventListener('click', function() {
+    var area = document.getElementById('outputArea');
+    if (!area.value) return;
+    navigator.clipboard.writeText(area.value).then(function() {
+      var btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copiato ✓';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'Copia tutto il codice'; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+</script>
+</body>
+</html>

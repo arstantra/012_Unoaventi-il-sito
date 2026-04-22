@@ -39,59 +39,71 @@
     <div class="blog-header-right">
       <div class="blog-header-topics">
         <span class="mono" style="opacity:0.4; font-size:10px; letter-spacing:0.2em; display:block; margin-bottom:16px;">Argomenti</span>
-        <div class="blog-topic-list">
-          <span class="tag tag-c">Design effimero</span>
-          <span class="tag tag-m">Sostenibilità</span>
-          <span class="tag tag-y">Didattica</span>
-          <span class="tag">SketchUp</span>
-          <span class="tag">Allestimenti</span>
-          <span class="tag">Munari</span>
-          <span class="tag">Visioni</span>
+        <!--
+          I tag qui sotto vengono generati automaticamente dallo script
+          in base alle categorie presenti negli articoli — non modificare.
+          Il pulsante "Tutti" è fisso, gli altri appaiono/scompaiono
+          in base agli articoli pubblicati.
+        -->
+        <div class="blog-topic-list" id="blogFilters">
+          <button class="blog-filter-btn active" data-cat="tutti">Tutti</button>
+          <!-- i filtri dinamici vengono iniettati dallo script -->
         </div>
       </div>
     </div>
   </header>
 
-  <div class="blog-list">
+  <!--
+    ═══════════════════════════════════════════════════════
+    LISTA ARTICOLI
+    ═══════════════════════════════════════════════════════
+    Per aggiungere un articolo:
+    1. Aggiungi un blocco <article class="blog-card"> QUI SOPRA
+       agli articoli esistenti (i più recenti in cima)
+    2. Imposta data-cat="nome-categoria" sull'<article>
+       — usa solo lettere minuscole e trattini (es. "persone")
+       — il filtro si crea automaticamente
+    3. Crea il file articolo con articolo-template.html
 
-      <!--SPADONI-->
-	  
-	  <article class="blog-card">
+    La categoria appare come tag nella card e
+    come filtro nell'header — automaticamente.
+    ═══════════════════════════════════════════════════════
+  -->
+  <div class="blog-list" id="blogList">
+
+    <!-- ===== ARTICOLO: Alessandro Spadoni ===== -->
+    <article class="blog-card" data-cat="persone sostenibilita">
       <a href="articolo-spadoni.html" class="blog-card-inner has-image">
-        
         <div class="blog-card-img-wrapper">
           <img src="img/blog/spadoni.webp" alt="Alessandro Spadoni">
         </div>
-        
         <div class="blog-card-text-group">
           <div class="blog-card-meta">
             <span class="blog-card-date mono">Aprile 2024</span>
-            <span class="blog-card-cat tag tag-m">Persone · SANA</span>
+            <span class="blog-card-cat blog-tag" data-cat="persone">Persone</span>
+            <span class="blog-card-cat blog-tag" data-cat="sostenibilita">Sostenibilità</span>
           </div>
           <h2 class="blog-card-title">Alessandro: l'anima oltre il padiglione</h2>
           <p class="blog-card-occhiello">
             Un ricordo tra architetture temporanee, sostenibilità e quelle tenerine alla zucca che sapevano di casa.
           </p>
         </div>
-        
         <span class="blog-card-leggi mono">Leggi →</span>
       </a>
     </article>
 
-	 <!--INTERVISTA CNA-->
-	  
-    <article class="blog-card">
+    <!-- ===== ARTICOLO: Intervista CNA ===== -->
+    <article class="blog-card" data-cat="imprenditorialita">
       <a href="articolo-intervista-cna.html" class="blog-card-inner has-image">
-		  
-		  <div class="blog-card-img-wrapper">
+        <div class="blog-card-img-wrapper">
           <img src="img/blog/intervista-cna.webp" alt="Andrea Poletti">
         </div>
         <div class="blog-card-text-group">
           <div class="blog-card-meta">
             <span class="blog-card-date mono">Marzo 2024</span>
-            <span class="blog-card-cat tag tag-c">Design effimero</span>
+            <span class="blog-card-cat blog-tag" data-cat="imprenditorialita">Imprenditorialità</span>
           </div>
-          <h2 class="blog-card-title">Video Intervista:&nbsp;Dare Forma al Futuro Imprenditoriale</h2>
+          <h2 class="blog-card-title">Video Intervista: Dare Forma al Futuro Imprenditoriale</h2>
           <p class="blog-card-occhiello">
             Trasformare le idee in realtà attraverso il supporto strategico e la formazione.
           </p>
@@ -100,21 +112,30 @@
       </a>
     </article>
 
-   <!-- <article class="blog-card">
-      <a href="articolo-template.html" class="blog-card-inner">
+    <!--
+      Per aggiungere un nuovo articolo, copia questo blocco.
+      Per più categorie: elencale in data-cat separate da spazio
+      es. data-cat="persone sostenibilita"
+      e aggiungi un <span class="blog-tag"> per ciascuna.
+
+    <article class="blog-card" data-cat="categoria1 categoria2">
+      <a href="articolo-nome.html" class="blog-card-inner has-image">
+        <div class="blog-card-img-wrapper">
+          <img src="img/blog/nome.webp" alt="Descrizione">
+        </div>
         <div class="blog-card-text-group">
           <div class="blog-card-meta">
-            <span class="blog-card-date mono">— —</span>
-            <span class="blog-card-cat tag tag-y">Didattica</span>
+            <span class="blog-card-date mono">Mese Anno</span>
+            <span class="blog-card-cat blog-tag" data-cat="categoria1">Label categoria 1</span>
+            <span class="blog-card-cat blog-tag" data-cat="categoria2">Label categoria 2</span>
           </div>
-          <h2 class="blog-card-title">L'architettura insegnata</h2>
-          <p class="blog-card-occhiello">
-            Come trasmettere la complessità del progetto alle nuove generazioni di designer.
-          </p>
+          <h2 class="blog-card-title">Titolo articolo</h2>
+          <p class="blog-card-occhiello">Breve descrizione.</p>
         </div>
         <span class="blog-card-leggi mono">Leggi →</span>
       </a>
-    </article>-->
+    </article>
+    -->
 
   </div>
 
@@ -138,5 +159,71 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    /*
+      BLOG — filtri dinamici con supporto multi-categoria
+      =====================================================
+      Ogni <article> può avere più categorie in data-cat,
+      separate da spazio: data-cat="persone sostenibilita"
+
+      I tag .blog-tag dentro la card definiscono le categorie
+      e i loro label — lo script li legge e costruisce i filtri.
+
+      Il filtro mostra l'articolo se almeno una delle sue
+      categorie corrisponde a quella selezionata.
+    */
+    (function () {
+      var cards   = document.querySelectorAll('.blog-card[data-cat]');
+      var filters = document.getElementById('blogFilters');
+      if (!cards.length || !filters) return;
+
+      /* Raccoglie tutte le categorie uniche da tutti i .blog-tag
+         nell'ordine in cui compaiono scorrendo gli articoli */
+      var seen = {};
+      var cats = [];
+      cards.forEach(function (card) {
+        card.querySelectorAll('.blog-tag[data-cat]').forEach(function (tagEl) {
+          var cat   = tagEl.dataset.cat;
+          var label = tagEl.textContent.trim();
+          if (cat && !seen[cat]) {
+            seen[cat] = true;
+            cats.push({ cat: cat, label: label });
+          }
+        });
+      });
+
+      /* Crea i bottoni filtro */
+      cats.forEach(function (item) {
+        var btn = document.createElement('button');
+        btn.className    = 'blog-filter-btn';
+        btn.dataset.cat  = item.cat;
+        btn.textContent  = item.label;
+        filters.appendChild(btn);
+      });
+
+      /* Gestione click filtro —
+         mostra l'articolo se la sua lista data-cat contiene la categoria */
+      filters.addEventListener('click', function (e) {
+        var btn = e.target.closest('.blog-filter-btn');
+        if (!btn) return;
+
+        document.querySelectorAll('.blog-filter-btn').forEach(function (b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+
+        var f = btn.dataset.cat;
+        cards.forEach(function (card) {
+          if (f === 'tutti') {
+            card.style.display = '';
+          } else {
+            /* data-cat è una lista separata da spazio */
+            var cardCats = card.dataset.cat.split(' ');
+            card.style.display = cardCats.indexOf(f) !== -1 ? '' : 'none';
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

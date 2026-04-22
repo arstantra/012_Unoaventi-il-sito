@@ -47,6 +47,53 @@
   gap: 8px;
 }
 
+/*
+  Filtri blog — bottoni generati da JS.
+  Neutri per non sovrapporsi ai colori delle categorie progetto.
+  Attivo: sfondo inchiostro, testo carta.
+*/
+.blog-filter-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border: 1px solid var(--inchiostro);
+  background: transparent;
+  color: var(--inchiostro2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.blog-filter-btn:hover {
+  background: var(--carta-dark);
+  color: var(--inchiostro);
+}
+
+.blog-filter-btn.active {
+  background: var(--inchiostro);
+  color: var(--carta);
+  border-color: var(--inchiostro);
+}
+
+/*
+  Tag categoria nei singoli articoli della lista.
+  Stesso stile neutro dei filtri — stesso sistema visivo,
+  nessuna sovrapposizione con i colori CMYK dei progetti.
+*/
+.blog-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid var(--inchiostro2);
+  color: var(--inchiostro2);
+  background: transparent;
+  display: inline-block;
+}
+
 /* ---- LISTA ARTICOLI (GRID) ---- */
 .blog-list {
   border-bottom: 1.5px solid var(--inchiostro);
@@ -223,6 +270,11 @@
   letter-spacing: 0.12em;
   color: var(--inchiostro2);
   opacity: 0.45;
+}
+
+/* Categoria nella riga meta — stesso stile .blog-tag, inline */
+.articolo-cat {
+  margin-left: 4px; /* piccolo respiro dal separatore implicito */
 }
 
 .articolo-titolo {
@@ -477,6 +529,43 @@ figure.articolo-image-full figcaption {
   .blog-card-inner,
   .blog-card-inner.has-image { padding: 28px 24px; }
   .blog-card-leggi { display: none; }
+}
+
+/* ---- NAVIGAZIONE FINE ARTICOLO ---- */
+/*
+  Barra compatta sotto l'articolo: link al blog a sinistra,
+  link opzionale a destra. Nessun doppio testo — solo mono lineare.
+*/
+.articolo-nav-fine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  border-top: 1px solid var(--carta-mid);
+  border-bottom: 1.5px solid var(--inchiostro);
+  gap: 20px;
+}
+
+.articolo-nav-blog,
+.articolo-nav-next {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--inchiostro2);
+  text-decoration: none;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.articolo-nav-blog:hover,
+.articolo-nav-next:hover {
+  opacity: 1;
+  color: var(--cmyk-m);
+}
+
+@media (max-width: 600px) {
+  .articolo-nav-fine { padding: 16px 24px; }
 }
 
 /* ---- VIDEO YOUTUBE ---- */

@@ -62,8 +62,10 @@
           <span class="tag tag-k">Design di prodotto</span>
           <span class="tag tag-p">Grafica &amp; comunicazione</span>
           <span class="tag tag-v">Progetti visionari</span>
-          <span class="tag">Sostenibilità</span>
-          <span class="tag">Didattica</span>
+          <!-- Divisore + tag blog dinamici (iniettati da script) -->
+          <span class="hero-tags-divider"></span>
+          <span class="mono hero-tags-blog-label">Dal blog:</span>
+          <span id="heroTagsBlog" class="hero-tags-blog-wrap"></span>
         </div>
       </div>
     </div>
@@ -86,9 +88,8 @@
         <div class="hero-featured-overlay">
           <div class="hero-overlay-accent-bar" id="heroAccentBar"></div>
           <div class="hero-featured-title">I Progetti<span class="hero-title-dot">.</span></div>
-          <!-- L'etichetta viene aggiornata dallo script ad ogni cambio slide -->
+          <!-- Etichetta dinamica: label descrittivo con bordo colorato per slide -->
           <div class="hero-slide-label-wrap" id="heroSlideLabel">
-            <span class="hero-slide-label-pill" id="heroSlideLabelPill"></span>
             <span class="hero-slide-label-text" id="heroSlideLabelText"></span>
           </div>
         </div>
@@ -219,7 +220,6 @@
       var grid = document.getElementById('homeGrid');
       if (!grid || typeof PROGETTI === 'undefined') return;
 
-      /* Shuffle Fisher-Yates */
       var list = PROGETTI.slice();
       for (var i = list.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -241,6 +241,36 @@
             '</div>' +
           '</a>';
         grid.insertAdjacentHTML('beforeend', html);
+      });
+    })();
+  </script>
+
+  <script>
+    /*
+      TAG BLOG DINAMICI NELL'HERO
+      ============================
+      Aggiorna questo array ogni volta che aggiungi
+      una nuova categoria nel blog.html —
+      stesso slug e label usati nei data-cat degli articoli.
+
+      I tag compaiono sotto le 6 categorie progetto
+      con stile neutro e dimensione ridotta.
+    */
+    const BLOG_TAGS = [
+      { cat: 'persone',          label: 'Persone' },
+      { cat: 'sostenibilita',    label: 'Sostenibilità' },
+      { cat: 'imprenditorialita', label: 'Imprenditorialità' },
+      /* aggiungi qui i nuovi tag blog */
+    ];
+
+    (function () {
+      var wrap = document.getElementById('heroTagsBlog');
+      if (!wrap) return;
+      BLOG_TAGS.forEach(function (item) {
+        var span = document.createElement('span');
+        span.className   = 'tag tag-val';
+        span.textContent = item.label;
+        wrap.appendChild(span);
       });
     })();
   </script>
@@ -283,13 +313,13 @@
       Riordinare → riordina gli oggetti
     */
     const HERO_SLIDES = [
-      { src: 'img/hero/01.webp', label: 'Architetture effimere',   cat: 'effimera' },
+      { src: 'img/hero/01.webp', label: 'Interior design',         cat: 'interni'  },
       { src: 'img/hero/02.webp', label: 'Interior design',         cat: 'interni'  },
-      { src: 'img/hero/03.webp', label: 'Arredo urbano',           cat: 'urbano'   },
-      { src: 'img/hero/04.webp', label: 'Architetture effimere',   cat: 'effimera' },
-      { src: 'img/hero/05.webp', label: 'Interior design',         cat: 'interni'  },
-      { src: 'img/hero/06.webp', label: 'Architetture effimere',   cat: 'effimera' },
-      { src: 'img/hero/07.webp', label: 'Arredo urbano',           cat: 'urbano'   },
+      { src: 'img/hero/03.webp', label: 'Progetti visionari',      cat: 'visioni'  },
+      { src: 'img/hero/04.webp', label: 'Architettura effimera',   cat: 'effimera' },
+      { src: 'img/hero/05.webp', label: 'Arredo urbano',           cat: 'urbano'   },
+      { src: 'img/hero/06.webp', label: 'Architettura effimera',   cat: 'effimera' },
+      { src: 'img/hero/07.webp', label: 'Architettura effimera',   cat: 'effimera' },
       /* aggiungi altre slide qui sopra */
     ];
 
@@ -310,7 +340,6 @@
     /* ---- NON MODIFICARE SOTTO QUESTA RIGA ---- */
     (function () {
       const wrap      = document.getElementById('heroSlidesWrap');
-      const labelPill = document.getElementById('heroSlideLabelPill');
       const labelText = document.getElementById('heroSlideLabelText');
       const accentBar = document.getElementById('heroAccentBar');
       if (!wrap || !HERO_SLIDES.length) return;
@@ -331,33 +360,23 @@
       /* Aggiorna l'etichetta overlay con animazione fade */
       function updateLabel(i) {
         var slide = HERO_SLIDES[i];
-        var color = CAT_COLORS[slide.cat] || '#F4EFE4';
+        var color = CAT_COLORS[slide.cat] || 'rgba(244,239,228,0.5)';
 
         /* Fade out */
-        if (labelPill) {
-          labelPill.style.transition = 'opacity 0.3s';
-          labelPill.style.opacity    = '0';
-        }
         if (labelText) {
-          labelText.style.transition = 'opacity 0.3s';
-          labelText.style.opacity    = '0';
+          labelText.style.opacity = '0';
         }
 
         setTimeout(function () {
-          /* Aggiorna contenuto e colore */
-          if (labelPill) {
-            labelPill.textContent        = slide.cat;
-            labelPill.style.background   = color;
-            labelPill.style.color        = (slide.cat === 'urbano') ? '#1A1612' : '#F4EFE4';
-          }
+          /* Aggiorna testo e colore bordo */
           if (labelText) {
-            labelText.textContent = slide.label;
+            labelText.textContent           = slide.label;
+            labelText.style.borderLeftColor = color;
           }
           if (accentBar) {
             accentBar.style.background = color;
           }
           /* Fade in */
-          if (labelPill) labelPill.style.opacity = '1';
           if (labelText) labelText.style.opacity = '1';
         }, 300);
       }

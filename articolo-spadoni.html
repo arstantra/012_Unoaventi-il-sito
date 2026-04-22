@@ -26,25 +26,26 @@
       <a href="contatti.html">Contatti</a>
     </div>
   </nav>
-
-  <!-- Breadcrumb -->
-  <div class="progetto-breadcrumb">
-    <a href="blog.html">← Blog</a>
-    <span class="tag tag-m" style="font-size:10px; padding:4px 10px;">Persone · SANA</span>
-  </div>
-
+  
   <!-- ========== TESTATA ARTICOLO ========== -->
-  <header class="articolo-header">
+ <header class="articolo-header">
     <div class="articolo-header-meta">
+      <!-- [MODIFICA] Data: es. "Aprile 2025" -->
       <span class="articolo-data mono">Aprile 2024</span>
-      <span class="articolo-lettura mono">4 min di lettura</span>
+      <!-- [MODIFICA] Stima minuti di lettura: ~200 parole/minuto -->
+      <span class="articolo-lettura mono">3 min di lettura</span>
+      <!-- [MODIFICA] Categoria blog — tono neutro, stessa grafica dei filtri.
+           Scrivi il testo che vuoi, deve corrispondere al data-cat dell'articolo in blog.html -->
+      <span class="blog-tag articolo-cat">Persone</span> <span class="blog-tag articolo-cat">Sostenibilità</span>
     </div>
+    <!-- [MODIFICA] Titolo principale dell'articolo -->
     <h1 class="articolo-titolo">Alessandro: l'anima oltre il padiglione</h1>
+    <!-- [MODIFICA] Occhiello — frase di apertura, massimo 2 righe.
+         Può essere una domanda, una provocazione, un'affermazione netta. -->
     <p class="articolo-occhiello">
-      Ci sono persone che non occupano solo uno spazio fisico, ma definiscono l'architettura invisibile di un progetto. Alessandro era una di queste.
+      Ci sono persone che non occupano solo uno spazio fisico ma definiscono l'architettura invisibile di un progetto. Alessandro era una di queste.
     </p>
   </header>
-
   <!-- ========== CORPO ARTICOLO ========== -->
   <div class="articolo-body">
     <div class="articolo-testo">
@@ -108,22 +109,20 @@
       <div class="articolo-correlati">
         <div class="mono" style="font-size:9px; opacity:0.4; letter-spacing:0.2em; margin-bottom:12px;">Progetti correlati</div>
         <a href="progetto-sana-2023.html" class="articolo-correlato-link">SANA 2023 →</a>
+		<a href="progetto-sana-2022.html" class="articolo-correlato-link">SANA 2022 →</a>
         <a href="progetto-sana-2020.html" class="articolo-correlato-link">SANA 2020 →</a>
+		<a href="progetto-cosmoprof-2019.html" class="articolo-correlato-link">COSMOPROF 2019 →</a>
         <a href="progetto-sana-2018.html" class="articolo-correlato-link">SANA 2018 →</a>
+		<a href="progetto-sana-2007.html" class="articolo-correlato-link">SANA 2007 →</a>
       </div>
     </aside>
   </div>
 
   <!-- Navigazione articoli -->
-  <nav class="progetto-nav">
-    <a href="blog.html" class="progetto-nav-prev">
-      <span class="mono">← Tutti gli articoli</span>
-      <span class="progetto-nav-title">Blog</span>
-    </a>
-    <a href="articolo-intervista-cna.html" class="progetto-nav-next">
-      <span class="mono">Prossimo →</span>
-      <span class="progetto-nav-title">Video Intervista CNA</span>
-    </a>
+  <nav class="articolo-nav-fine">
+    <a href="blog.html" class="articolo-nav-blog mono">← Tutti gli articoli</a>
+    <!-- [MODIFICA] Link opzionale a progetto correlato — cancella se non serve -->
+    <a href="portfolio.html" class="articolo-nav-next mono">Vedi il portfolio →</a>
   </nav>
 
   <footer>
