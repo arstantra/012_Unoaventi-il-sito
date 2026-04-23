@@ -212,6 +212,45 @@ var PROGETTI = [
     catLabel: 'Architettura effimera',
     catClass: 'cat-effimera'
   },
+	
+  {
+    href:     'progetto-sana-bios-2019.html',
+    img:      'img/progetti/sana-bios-2019/cover.webp',
+    pat:      'pat-lines',
+    bar:      'var(--cmyk-m)',
+    year:     '2019',
+    title:    'SANA Bios 2019',
+    desc:     'Arte e Cura. Salone internazionale del biologico. Bologna.',
+    cat:      'effimera',
+    catLabel: 'Architettura effimera',
+    catClass: 'cat-effimera'
+  },
+	
+  {
+    href:     'progetto-parco-con-villa.html',
+    img:      'img/progetti/parco-con-villa/cover.webp',
+    pat:      'pat-lines',
+    bar:      'var(--cmyk-m)',
+    year:     '2019',
+    title:    'PARCO CON VILLA',
+    desc:     'Studio di un parco con villa per sistema di irrigazione automatico.',
+    cat:      'visioni',
+    catLabel: 'Progetto visionario',
+    catClass: 'cat-visioni'
+  },
+	
+  {
+    href:     'progetto-sana-bdih-2019.html',
+    img:      'img/progetti/sana-bdih-2019/cover.webp',
+    pat:      'pat-lines',
+    bar:      'var(--cmyk-m)',
+    year:     '2019',
+    title:    'SANA BDIH 2019',
+    desc:     'Albero della vita ad accogliere i visitatori al salone internazionale del biologico.',
+    cat:      'effimera',
+    catLabel: 'Architettura effimera',
+    catClass: 'cat-effimera'
+  },
 
   /* ── AGGIUNGI NUOVI PROGETTI QUI SOPRA ──────────────────────────
      Copia un blocco { ... }, , e compila i campi.
