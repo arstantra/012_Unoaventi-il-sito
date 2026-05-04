@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generatore Articoli — Unoaventi Design Studio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+    :root {
+      --carta:       #F4EFE4;
+      --carta-dark:  #E8E0D0;
+      --carta-mid:   #D4C9B4;
+      --inchiostro:  #1A1612;
+      --inchiostro2: #3D3630;
+      --cmyk-c:      #00AEEF;
+      --cmyk-m:      #EC008C;
+      --cmyk-y:      #F5C800;
+      --c-cyan-dark: #0082B3;
+      --c-mag-dark:  #B8006C;
+      --c-yel-dark:  #C4A000;
+      --verde:       #1D9E75;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'DM Serif Display', serif;
+      --font-mono:    'DM Mono', monospace;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--carta);
+      color: var(--inchiostro);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.5;
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--carta);
+      border-bottom: 1.5px solid var(--inchiostro);
+      padding: 0 32px;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .nav-studio {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--inchiostro);
+    }
+
+    .nav-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--inchiostro2);
+      opacity: 0.6;
+    }
+
+    .nav-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      background: var(--cmyk-m);
+      color: #fff;
+      align-self: center;
+    }
+
+    /* ---- HEADER ---- */
+    .gen-header {
+      background: var(--inchiostro);
+      padding: 48px 32px 40px;
+      border-bottom: 1.5px solid var(--cmyk-m);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .gen-header-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cmyk-m);
+      margin-bottom: 12px;
+    }
+
+    .gen-header-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 80px);
+      line-height: 0.92;
+      color: var(--carta);
+      letter-spacing: 0.02em;
+    }
+
+    .gen-header-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--carta);
+      opacity: 0.6;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .gen-header-right {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .output-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid rgba(244,239,228,0.3);
+      color: var(--carta);
+      opacity: 0.7;
+    }
+
+    .output-badge.active { border-color: var(--cmyk-m); color: var(--cmyk-m); opacity: 1; }
+    .output-badge.active-c { border-color: var(--cmyk-c); color: var(--cmyk-c); opacity: 1; }
+
+    /* ---- TABS ---- */
+    .gen-tabs {
+      display: flex;
+      border-bottom: 1.5px solid var(--inchiostro);
+      background: var(--carta-dark);
+    }
+
+    .gen-tab {
+      padding: 14px 28px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--inchiostro2);
+      border: none;
+      border-right: 1px solid var(--carta-mid);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+    }
+
+    .gen-tab::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--cmyk-m);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .gen-tab.active { background: var(--carta); color: var(--inchiostro); font-weight: 500; }
+    .gen-tab.active::after { transform: scaleX(1); }
+    .gen-tab:hover:not(.active) { background: var(--carta); color: var(--inchiostro); }
+
+    .gen-tab.tab-c::after { background: var(--cmyk-c); }
+
+    /* ---- PANNELLI ---- */
+    .gen-panel { display: none; padding: 40px 32px; flex-direction: column; gap: 20px; }
+    .gen-panel.active { display: flex; }
+
+    /* ---- FORM ---- */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inchiostro2);
+      opacity: 0.6;
+    }
+
+    input[type=text],
+    input[type=number],
+    select,
+    textarea {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 10px 14px;
+      background: var(--carta);
+      color: var(--inchiostro);
+      border: 1.5px solid var(--carta-mid);
+      outline: none;
+      border-radius: 0;
+      width: 100%;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus { border-color: var(--cmyk-m); }
+    textarea { resize: vertical; line-height: 1.6; }
+
+    .hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      color: var(--inchiostro2);
+      opacity: 0.5;
+      line-height: 1.5;
+    }
+
+    /* ---- CATEGORIE CHIP ---- */
+    .section-divider {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inchiostro2);
+      opacity: 0.4;
+      border-top: 1px solid var(--carta-mid);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+
+    .cat-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+    .cat-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cat-chip {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1.5px solid var(--carta-mid);
+      background: transparent;
+      color: var(--inchiostro2);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .cat-chip:hover:not(.sel) { border-color: var(--cmyk-m); color: var(--c-mag-dark); }
+
+    .cat-chip.sel {
+      background: var(--inchiostro);
+      color: var(--carta);
+      border-color: var(--inchiostro);
+    }
+
+    .cat-custom-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cat-custom-row input {
+      max-width: 240px;
+      font-size: 12px;
+      padding: 7px 12px;
+    }
+
+    .btn-add-cat {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      background: transparent;
+      border: 1.5px solid var(--carta-mid);
+      color: var(--inchiostro2);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.12s;
+    }
+
+    .btn-add-cat:hover { border-color: var(--cmyk-c); color: var(--c-cyan-dark); }
+
+    /* ---- CONTATORE PAROLE ---- */
+    .counter-row {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--carta-dark);
+      border: 1px solid var(--carta-mid);
+    }
+
+    .counter-item {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--inchiostro2);
+    }
+
+    .counter-val {
+      color: var(--inchiostro);
+      font-weight: 500;
+    }
+
+    /* ---- PULSANTI ---- */
+    .btn-gen {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      background: var(--inchiostro);
+      color: var(--carta);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      align-self: flex-start;
+    }
+
+    .btn-gen:hover { background: var(--cmyk-m); }
+
+    .btn-gen-c { background: var(--cmyk-c); color: #fff; }
+    .btn-gen-c:hover { background: var(--c-cyan-dark); }
+
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+
+    /* ---- OUTPUT ---- */
+    .output-section {
+      border-top: 1.5px solid var(--inchiostro);
+      background: var(--carta-dark);
+      display: none;
+    }
+
+    .output-section.visible { display: block; }
+
+    .output-header {
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--carta-mid);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .output-type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inchiostro2);
+      opacity: 0.5;
+    }
+
+    .output-filename {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cmyk-c);
+      letter-spacing: 0.06em;
+    }
+
+    .output-actions { display: flex; gap: 8px; }
+
+    .btn-copy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      background: transparent;
+      border: 1.5px solid var(--carta-mid);
+      color: var(--inchiostro2);
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .btn-copy:hover { background: var(--inchiostro); color: var(--carta); border-color: var(--inchiostro); }
+
+    .btn-copy.copied { background: var(--verde); color: #fff; border-color: var(--verde); }
+
+    .btn-download {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      background: var(--inchiostro);
+      color: var(--carta);
+      border: 1.5px solid var(--inchiostro);
+      cursor: pointer;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-download:hover { background: var(--cmyk-c); border-color: var(--cmyk-c); }
+
+    .output-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--inchiostro);
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 20px 32px;
+      background: var(--carta);
+      border-bottom: 1px solid var(--carta-mid);
+    }
+
+    .output-instruction {
+      padding: 12px 32px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--inchiostro2);
+      opacity: 0.6;
+      line-height: 1.7;
+    }
+
+    /* ---- GUIDA ---- */
+    .tip-box {
+      background: var(--carta);
+      border-left: 4px solid var(--cmyk-c);
+      padding: 16px 20px;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--inchiostro2);
+    }
+
+    .tip-box.m { border-left-color: var(--cmyk-m); }
+    .tip-box.y { border-left-color: var(--cmyk-y); }
+
+    .tip-box strong {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inchiostro);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .tip-box code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--carta-dark);
+      padding: 2px 6px;
+      color: var(--inchiostro);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--inchiostro);
+      color: var(--carta);
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-top: 4px solid var(--cmyk-m);
+    }
+
+    .footer-left { display: flex; flex-direction: column; gap: 4px; }
+
+    .footer-studio {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--carta);
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #666;
+    }
+
+    .footer-dots { display: flex; gap: 6px; }
+
+    .footer-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 700px) {
+      .field-row, .field-row-3 { grid-template-columns: 1fr; }
+      .gen-header { padding: 32px 20px; }
+      .gen-panel { padding: 28px 20px; }
+      .gen-tab { padding: 12px 16px; font-size: 9px; }
+      .output-code { padding: 16px 20px; }
+      .output-header { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-text">
+        <span class="nav-studio">Unoaventi Design Studio</span>
+        <span class="nav-name">Andrea Poletti</span>
+      </div>
+    </a>
+    <span class="nav-badge">Generatore Articoli</span>
+  </nav>
+
+  <div class="gen-header">
+    <div>
+      <div class="gen-header-eyebrow">Strumento interno · Blog</div>
+      <h1 class="gen-header-title">Generatore<br>Articoli</h1>
+      <p class="gen-header-sub">
+        Compila il form → ottieni i file pronti da incollare.<br>
+        Due output: <strong style="color:var(--cmyk-m);">articolo-*.html</strong> + <strong style="color:var(--cmyk-c);">card per blog.html</strong>
+      </p>
+    </div>
+    <div class="gen-header-right">
+      <span class="output-badge active">① articolo-*.html</span>
+      <span class="output-badge active-c">② card per blog.html</span>
+    </div>
+  </div>
+
+  <div class="gen-tabs">
+    <button class="gen-tab active" id="tab-btn-articolo" onclick="switchTab('articolo')">① Articolo</button>
+    <button class="gen-tab tab-c" id="tab-btn-card" onclick="switchTab('card')">② Card Blog</button>
+    <button class="gen-tab" id="tab-btn-guida" onclick="switchTab('guida')">Guida rapida</button>
+  </div>
+
+  <!-- ===== PANNELLO ARTICOLO ===== -->
+  <div class="gen-panel active" id="panel-articolo">
+
+    <div class="field-row">
+      <div class="field">
+        <label>Titolo articolo *</label>
+        <input type="text" id="titolo" placeholder="Alessandro: l'anima oltre il padiglione" oninput="updateStats(); autoFilename();">
+      </div>
+      <div class="field">
+        <label>Nome file (senza .html)</label>
+        <input type="text" id="filename" placeholder="articolo-nome">
+        <span class="hint">Il file verrà salvato come: articolo-nome.html</span>
+      </div>
+    </div>
+
+    <div class="field-row-3">
+      <div class="field">
+        <label>Data pubblicazione</label>
+        <input type="text" id="data" placeholder="Aprile 2025">
+      </div>
+      <div class="field">
+        <label>Minuti di lettura</label>
+        <input type="number" id="minuti" placeholder="3" min="1" max="60" style="max-width:100px;">
+        <span class="hint">~200 parole/minuto</span>
+      </div>
+      <div class="field">
+        <label>Meta description (SEO)</label>
+        <input type="text" id="metadesc" placeholder="Breve descrizione per Google...">
+        <span class="hint">Max 155 caratteri</span>
+      </div>
+    </div>
+
+    <div class="field full">
+      <label>Occhiello — frase di apertura (max 2 righe)</label>
+      <textarea id="occhiello" rows="2" placeholder="Ci sono persone che non occupano solo uno spazio fisico ma definiscono l'architettura invisibile di un progetto."></textarea>
+    </div>
+
+    <!-- CATEGORIE -->
+    <div class="section-divider">Categorie</div>
+
+    <div class="cat-wrap">
+      <div class="cat-list" id="catList">
+        <button class="cat-chip" onclick="toggleCat(this,'persone','Persone')">Persone</button>
+        <button class="cat-chip" onclick="toggleCat(this,'sostenibilita','Sostenibilità')">Sostenibilità</button>
+        <button class="cat-chip" onclick="toggleCat(this,'design-effimero','Design effimero')">Design effimero</button>
+        <button class="cat-chip" onclick="toggleCat(this,'didattica','Didattica')">Didattica</button>
+        <button class="cat-chip" onclick="toggleCat(this,'sketchup','SketchUp')">SketchUp</button>
+        <button class="cat-chip" onclick="toggleCat(this,'imprenditorialita','Imprenditorialità')">Imprenditorialità</button>
+        <button class="cat-chip" onclick="toggleCat(this,'allestimenti','Allestimenti')">Allestimenti</button>
+        <button class="cat-chip" onclick="toggleCat(this,'munari','Munari')">Munari</button>
+      </div>
+      <div class="cat-custom-row">
+        <input type="text" id="catCustomInput" placeholder="Nuova categoria personalizzata...">
+        <button class="btn-add-cat" onclick="addCustomCat()">+ Aggiungi</button>
+      </div>
+    </div>
+
+    <!-- TESTO -->
+    <div class="section-divider">Testo articolo</div>
+
+    <div class="field full">
+      <label>Corpo testo — scrivi HTML direttamente</label>
+      <textarea id="corpo" rows="12"
+        placeholder="&lt;p&gt;Primo paragrafo. Inizia dalla cosa più interessante.&lt;/p&gt;&#10;&#10;&lt;h2&gt;Titolo sezione&lt;/h2&gt;&#10;&#10;&lt;p&gt;Secondo paragrafo.&lt;/p&gt;&#10;&#10;&lt;blockquote&gt;&quot;Una citazione che vale la pena isolare.&quot;&lt;/blockquote&gt;&#10;&#10;&lt;p&gt;Conclusione secca.&lt;/p&gt;"
+        oninput="updateStats()"></textarea>
+      <span class="hint">Tag disponibili: &lt;p&gt; &lt;h2&gt; &lt;h3&gt; &lt;strong&gt; &lt;em&gt; &lt;blockquote&gt; &lt;ul&gt;&lt;li&gt; &lt;figure&gt;&lt;img src=""&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;</span>
+    </div>
+
+    <div class="counter-row">
+      <div class="counter-item">Parole: <span class="counter-val" id="wordCount">0</span></div>
+      <div class="counter-item">Lettura stimata: <span class="counter-val" id="readTime">0</span> min</div>
+    </div>
+
+    <!-- OPZIONI EXTRA -->
+    <div class="section-divider">Opzioni extra</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>ID video YouTube (opzionale)</label>
+        <input type="text" id="youtubeId" placeholder="7ydtHp_F23g">
+        <span class="hint">Solo l'ID dall'URL: youtube.com/embed/<strong>QUESTO_ID</strong></span>
+      </div>
+      <div class="field">
+        <label>Immagine copertina articolo (opzionale)</label>
+        <input type="text" id="imgSrc" placeholder="img/blog/nome.webp">
+        <span class="hint">Percorso relativo — metti il file in img/blog/</span>
+      </div>
+    </div>
+
+    <div class="section-divider">Progetti correlati (sidebar)</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Link correlato 1</label>
+        <input type="text" id="rel1Href" placeholder="progetto-sana-2023.html">
+      </div>
+      <div class="field">
+        <label>Label correlato 1</label>
+        <input type="text" id="rel1Label" placeholder="SANA 2023 →">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Link correlato 2</label>
+        <input type="text" id="rel2Href" placeholder="progetto-sana-2020.html">
+      </div>
+      <div class="field">
+        <label>Label correlato 2</label>
+        <input type="text" id="rel2Label" placeholder="SANA 2020 →">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Link correlato 3</label>
+        <input type="text" id="rel3Href" placeholder="progetto-cosmoprof-2019.html">
+      </div>
+      <div class="field">
+        <label>Label correlato 3</label>
+        <input type="text" id="rel3Label" placeholder="COSMOPROF 2019 →">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-gen" onclick="generateArticolo()">Genera articolo-*.html →</button>
+    </div>
+
+  </div>
+
+  <!-- ===== PANNELLO CARD ===== -->
+  <div class="gen-panel" id="panel-card">
+
+    <div class="tip-box m">
+      <strong>Come si usa</strong>
+      Genera il blocco <code>&lt;article&gt;</code> da incollare in <code>blog.html</code> dentro il div <code>#blogList</code>.<br>
+      I dati vengono presi automaticamente da quanto hai compilato nel tab ①.<br>
+      Metti sempre l'articolo più recente <strong>in cima</strong> alla lista.
+    </div>
+
+    <div class="tip-box">
+      <strong>Immagine card</strong>
+      Se hai inserito un percorso immagine nel tab ①, appare nella card con classe <code>has-image</code>.<br>
+      Formato consigliato: <strong>webp, 800×500px, max 100kb</strong> — usa Squoosh per ottimizzare.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-gen btn-gen-c" onclick="generateCard()">Genera card per blog.html →</button>
+    </div>
+
+  </div>
+
+  <!-- ===== PANNELLO GUIDA ===== -->
+  <div class="gen-panel" id="panel-guida">
+
+    <div class="tip-box m">
+      <strong>Flusso di lavoro completo</strong>
+      1. Compila il tab ① Articolo con tutti i dati<br>
+      2. Clic "Genera articolo" → scarica o copia il codice → salva come <em>articolo-nome.html</em> nella cartella del sito<br>
+      3. Vai al tab ② Card Blog → clic "Genera card" → copia il blocco<br>
+      4. Apri <strong>blog.html</strong> nel tuo editor → incolla la card dentro <code>#blogList</code> (i più recenti in cima)<br>
+      5. Carica entrambi i file su GitHub → Netlify si aggiorna automaticamente
+    </div>
+
+    <div class="tip-box">
+      <strong>Tag HTML nel testo</strong>
+      <code>&lt;p&gt;testo&lt;/p&gt;</code> → paragrafo normale<br>
+      <code>&lt;h2&gt;titolo&lt;/h2&gt;</code> → titolo di sezione<br>
+      <code>&lt;blockquote&gt;"citazione"&lt;/blockquote&gt;</code> → citazione in evidenza con bordo magenta<br>
+      <code>&lt;strong&gt;parola&lt;/strong&gt;</code> → grassetto<br>
+      <code>&lt;em&gt;parola&lt;/em&gt;</code> → corsivo (usa il font serif)<br>
+      <code>&lt;ul&gt;&lt;li&gt;voce&lt;/li&gt;&lt;/ul&gt;</code> → lista puntata<br>
+      <code>&lt;figure&gt;&lt;img src="img/blog/nome.webp" alt="..."&gt;&lt;figcaption&gt;didascalia&lt;/figcaption&gt;&lt;/figure&gt;</code> → immagine nel testo
+    </div>
+
+    <div class="tip-box y">
+      <strong>Immagini blog — nomi liberi</strong>
+      A differenza dei progetti, le immagini del blog non hanno un nome standardizzato.<br>
+      Mettile tutte in <strong>img/blog/</strong> con un nome descrittivo:<br>
+      <code>img/blog/spadoni.webp</code> · <code>img/blog/intervista-cna.webp</code><br>
+      Formato: webp · Dimensioni card: 800×500px · Max 100kb · Usa Squoosh
+    </div>
+
+    <div class="tip-box">
+      <strong>Categorie multiple</strong>
+      Puoi selezionare più categorie per lo stesso articolo — vengono tutte incluse sia nel file HTML sia nella card.<br>
+      Il sistema di filtri in blog.html le gestisce automaticamente tramite lo script esistente.
+    </div>
+
+  </div>
+
+  <!-- ===== OUTPUT ARTICOLO ===== -->
+  <div class="output-section" id="output-articolo">
+    <div class="output-header">
+      <div>
+        <div class="output-type">Output — Articolo</div>
+        <div class="output-filename" id="output-articolo-filename">articolo-nome.html</div>
+      </div>
+      <div class="output-actions">
+        <button class="btn-copy" id="btn-copy-articolo" onclick="copyOutput('articolo')">Copia tutto</button>
+        <a class="btn-download" id="btn-download-articolo" href="#" download="articolo-nome.html">⬇ Scarica file</a>
+      </div>
+    </div>
+    <pre class="output-code" id="code-articolo"></pre>
+    <div class="output-instruction">
+      Salva questo file come <span id="instruction-filename">articolo-nome.html</span> nella cartella radice del sito · Poi genera anche la card per blog.html nel tab ②
+    </div>
+  </div>
+
+  <!-- ===== OUTPUT CARD ===== -->
+  <div class="output-section" id="output-card">
+    <div class="output-header">
+      <div>
+        <div class="output-type">Output — Card Blog</div>
+        <div class="output-filename" style="color: var(--cmyk-c);">Incolla in blog.html dentro #blogList</div>
+      </div>
+      <div class="output-actions">
+        <button class="btn-copy" id="btn-copy-card" onclick="copyOutput('card')">Copia tutto</button>
+      </div>
+    </div>
+    <pre class="output-code" id="code-card"></pre>
+    <div class="output-instruction">
+      Apri blog.html → trova il div <code>#blogList</code> → incolla questo blocco in cima alla lista (prima degli altri articoli)
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <span class="footer-studio">Unoaventi Design Studio · Andrea Poletti</span>
+      <span class="footer-copy">Strumento interno · generatore-articolo.html</span>
+    </div>
+    <div class="footer-dots">
+      <div class="footer-dot" style="background:var(--cmyk-c);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-m);"></div>
+      <div class="footer-dot" style="background:var(--cmyk-y);"></div>
+      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       STATO
+       ============================================================ */
+    var selectedCats = [];
+
+    /* ============================================================
+       TAB
+       ============================================================ */
+    function switchTab(id) {
+      var ids = ['articolo', 'card', 'guida'];
+      ids.forEach(function(t) {
+        document.getElementById('tab-btn-' + t).classList.toggle('active', t === id);
+        document.getElementById('panel-' + t).classList.toggle('active', t === id);
+      });
+    }
+
+    /* ============================================================
+       CATEGORIE
+       ============================================================ */
+    function toggleCat(el, val, label) {
+      var idx = selectedCats.findIndex(function(c) { return c.val === val; });
+      if (idx >= 0) {
+        selectedCats.splice(idx, 1);
+        el.classList.remove('sel');
+      } else {
+        selectedCats.push({ val: val, label: label });
+        el.classList.add('sel');
+      }
+    }
+
+    function addCustomCat() {
+      var inp = document.getElementById('catCustomInput');
+      var raw = inp.value.trim();
+      if (!raw) return;
+      var val = raw.toLowerCase()
+        .replace(/[àáâ]/g,'a').replace(/[èéê]/g,'e').replace(/[ìí]/g,'i')
+        .replace(/[òó]/g,'o').replace(/[ùú]/g,'u')
+        .replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+      if (selectedCats.find(function(c) { return c.val === val; })) { inp.value = ''; return; }
+      selectedCats.push({ val: val, label: raw });
+      var chip = document.createElement('button');
+      chip.className = 'cat-chip sel';
+      chip.textContent = raw;
+      var _val = val, _label = raw;
+      chip.onclick = function() { toggleCat(chip, _val, _label); };
+      document.getElementById('catList').appendChild(chip);
+      inp.value = '';
+    }
+
+    /* ============================================================
+       CONTATORE PAROLE
+       ============================================================ */
+    function updateStats() {
+      var corpo = document.getElementById('corpo').value;
+      var testo = corpo.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      var words = testo ? testo.split(' ').filter(function(w) { return w.length > 0; }).length : 0;
+      document.getElementById('wordCount').textContent = words;
+      var min = Math.max(1, Math.round(words / 200));
+      document.getElementById('readTime').textContent = min;
+      var minField = document.getElementById('minuti');
+      if (!minField.value || minField.dataset.auto !== 'false') {
+        minField.value = min;
+        minField.dataset.auto = 'true';
+      }
+    }
+
+    document.getElementById('minuti').addEventListener('input', function() {
+      this.dataset.auto = 'false';
+    });
+
+    /* ============================================================
+       AUTO FILENAME
+       ============================================================ */
+    function slugify(str) {
+      return str.toLowerCase()
+        .replace(/[àáâ]/g,'a').replace(/[èéê]/g,'e').replace(/[ìí]/g,'i')
+        .replace(/[òó]/g,'o').replace(/[ùú]/g,'u')
+        .replace(/[^a-z0-9\s\-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim();
+    }
+
+    function autoFilename() {
+      var fn = document.getElementById('filename');
+      if (fn.dataset.manual === 'true') return;
+      var t = document.getElementById('titolo').value.trim();
+      if (t) {
+        var words = t.split(' ').slice(0, 3).join(' ');
+        fn.value = 'articolo-' + slugify(words);
+      }
+    }
+
+    document.getElementById('filename').addEventListener('input', function() {
+      this.dataset.manual = 'true';
+    });
+
+    function getFilename() {
+      var fn = document.getElementById('filename').value.trim();
+      if (!fn) {
+        var t = document.getElementById('titolo').value.trim();
+        fn = t ? 'articolo-' + slugify(t.split(' ').slice(0,3).join(' ')) : 'articolo-nome';
+      }
+      return fn.replace(/\.html$/, '');
+    }
+
+    /* ============================================================
+       BUILDERS
+       ============================================================ */
+    function buildCatHeaderSpans() {
+      if (!selectedCats.length) return '<span class="blog-tag articolo-cat">Blog</span>';
+      return selectedCats.map(function(c) {
+        return '<span class="blog-tag articolo-cat">' + c.label + '</span>';
+      }).join(' ');
+    }
+
+    function buildCatDataAttr() {
+      if (!selectedCats.length) return 'blog';
+      return selectedCats.map(function(c) { return c.val; }).join(' ');
+    }
+
+    function buildCardCatSpans() {
+      if (!selectedCats.length) return '<span class="blog-card-cat blog-tag" data-cat="blog">Blog</span>';
+      return selectedCats.map(function(c) {
+        return '            <span class="blog-card-cat blog-tag" data-cat="' + c.val + '">' + c.label + '</span>';
+      }).join('\n');
+    }
+
+    function buildVideo() {
+      var id = document.getElementById('youtubeId').value.trim();
+      if (!id) return '';
+      return '\n\n      <div class="articolo-video">\n        <iframe\n          src="https://www.youtube.com/embed/' + id + '"\n          title="Video"\n          allowfullscreen>\n        </iframe>\n      </div>';
+    }
+
+    function buildCorrelati() {
+      var out = '';
+      for (var i = 1; i <= 3; i++) {
+        var href = document.getElementById('rel' + i + 'Href').value.trim();
+        var label = document.getElementById('rel' + i + 'Label').value.trim();
+        if (href && label) out += '\n        <a href="' + href + '" class="articolo-correlato-link">' + label + '</a>';
+      }
+      if (!out) return '';
+      return '\n\n      <div class="articolo-correlati">\n        <div class="mono" style="font-size:9px; opacity:0.4; letter-spacing:0.2em; margin-bottom:12px;">Progetti correlati</div>' + out + '\n      </div>';
+    }
+
+    function buildFigure() {
+      var src = document.getElementById('imgSrc').value.trim();
+      if (!src) return '';
+      var titolo = document.getElementById('titolo').value.trim() || 'Immagine';
+      return '\n\n      <figure>\n        <img src="' + src + '" alt="' + titolo + '">\n        <figcaption></figcaption>\n      </figure>';
+    }
+
+    /* ============================================================
+       GENERA ARTICOLO
+       ============================================================ */
+    function generateArticolo() {
+      var titolo   = document.getElementById('titolo').value.trim() || 'Titolo articolo';
+      var data     = document.getElementById('data').value.trim() || '— —';
+      var minuti   = document.getElementById('minuti').value.trim() || '3';
+      var occh     = document.getElementById('occhiello').value.trim() || 'Frase di apertura.';
+      var corpo    = document.getElementById('corpo').value.trim() || '<p>Testo articolo.</p>';
+      var metadesc = document.getElementById('metadesc').value.trim() || titolo + ' — Andrea Poletti, Unoaventi Design Studio.';
+      var fn       = getFilename();
+
+      var catSpans   = buildCatHeaderSpans();
+      var video      = buildVideo();
+      var figure     = buildFigure();
+      var correlati  = buildCorrelati();
+
+      var html = '<!DOCTYPE html>\n'
+        + '<html lang="it">\n'
+        + '<head>\n'
+        + '  <meta charset="UTF-8">\n'
+        + '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+        + '  <meta name="description" content="' + esc(metadesc) + '">\n'
+        + '  <title>' + esc(titolo) + ' — Blog · Unoaventi Design Studio</title>\n'
+        + '  <link rel="stylesheet" href="css/style.css">\n'
+        + '  <link rel="stylesheet" href="css/blog.css">\n'
+        + '  <link rel="stylesheet" href="css/fixes.css">\n'
+        + '</head>\n'
+        + '<body>\n\n'
+        + '  <nav class="nav">\n'
+        + '    <a href="index.html" class="nav-logo">\n'
+        + '      <img src="img/logo.png" alt="Unoaventi Design Studio" class="nav-logo-img">\n'
+        + '      <div class="nav-logo-text">\n'
+        + '        <span class="nav-studio">Unoaventi Design Studio</span>\n'
+        + '        <span class="nav-name">Andrea Poletti</span>\n'
+        + '      </div>\n'
+        + '    </a>\n'
+        + '    <div class="nav-links">\n'
+        + '      <a href="portfolio.html">Portfolio</a>\n'
+        + '      <a href="about.html">Chi sono</a>\n'
+        + '      <a href="blog.html" class="active">Blog</a>\n'
+        + '      <a href="contatti.html">Contatti</a>\n'
+        + '    </div>\n'
+        + '  </nav>\n\n'
+        + '  <header class="articolo-header">\n'
+        + '    <div class="articolo-header-meta">\n'
+        + '      <span class="articolo-data mono">' + esc(data) + '</span>\n'
+        + '      <span class="articolo-lettura mono">' + esc(minuti) + ' min di lettura</span>\n'
+        + '      ' + catSpans + '\n'
+        + '    </div>\n'
+        + '    <h1 class="articolo-titolo">' + esc(titolo) + '</h1>\n'
+        + '    <p class="articolo-occhiello">\n'
+        + '      ' + esc(occh) + '\n'
+        + '    </p>\n'
+        + '  </header>\n\n'
+        + '  <div class="articolo-body">\n'
+        + '    <div class="articolo-testo">\n'
+        + figure
+        + video
+        + '\n\n      ' + corpo + '\n\n'
+        + '    </div>\n\n'
+        + '    <aside class="articolo-aside">\n'
+        + '      <div class="articolo-autore">\n'
+        + '        <img src="img/andrea-poletti.jpg" alt="Andrea Poletti" class="articolo-autore-foto">\n'
+        + '        <div>\n'
+        + '          <div class="articolo-autore-nome">Andrea Poletti</div>\n'
+        + '          <div class="articolo-autore-ruolo mono">Progettista · Docente</div>\n'
+        + '        </div>\n'
+        + '      </div>'
+        + correlati
+        + '\n    </aside>\n'
+        + '  </div>\n\n'
+        + '  <nav class="articolo-nav-fine">\n'
+        + '    <a href="blog.html" class="articolo-nav-blog mono">\u2190 Tutti gli articoli</a>\n'
+        + '    <a href="portfolio.html" class="articolo-nav-next mono">Vedi il portfolio \u2192</a>\n'
+        + '  </nav>\n\n'
+        + '  <footer>\n'
+        + '    <div class="footer-left">\n'
+        + '      <span class="footer-studio">Unoaventi Design Studio \u00b7 Andrea Poletti</span>\n'
+        + '      <span class="footer-copy">\u00a9 2024 \u00b7 unoaventi.it \u00b7 Scala 1:20</span>\n'
+        + '    </div>\n'
+        + '    <div class="footer-dots">\n'
+        + '      <div class="footer-dot" style="background:var(--cmyk-c);"></div>\n'
+        + '      <div class="footer-dot" style="background:var(--cmyk-m);"></div>\n'
+        + '      <div class="footer-dot" style="background:var(--cmyk-y);"></div>\n'
+        + '      <div class="footer-dot" style="background:var(--inchiostro); border:1px solid #444;"></div>\n'
+        + '    </div>\n'
+        + '    <div class="footer-links">\n'
+        + '      <a href="portfolio.html">Portfolio</a>\n'
+        + '      <a href="about.html">Chi sono</a>\n'
+        + '      <a href="blog.html">Blog</a>\n'
+        + '      <a href="contatti.html">Contatti</a>\n'
+        + '    </div>\n'
+        + '  </footer>\n\n'
+        + '  <script src="js/main.js"><\/script>\n'
+        + '</body>\n'
+        + '</html>';
+
+      showOutput('articolo', fn + '.html', html);
+    }
+
+    /* ============================================================
+       GENERA CARD
+       ============================================================ */
+    function generateCard() {
+      var titolo  = document.getElementById('titolo').value.trim() || 'Titolo articolo';
+      var data    = document.getElementById('data').value.trim() || '— —';
+      var occh    = document.getElementById('occhiello').value.trim() || 'Breve descrizione.';
+      var imgSrc  = document.getElementById('imgSrc').value.trim();
+      var fn      = getFilename();
+
+      var catDataAttr = buildCatDataAttr();
+      var catSpans    = buildCardCatSpans();
+
+      var imgBlock = imgSrc
+        ? '\n        <div class="blog-card-img-wrapper">\n          <img src="' + imgSrc + '" alt="' + esc(titolo) + '">\n        </div>'
+        : '';
+
+      var hasImage = imgSrc ? ' has-image' : '';
+
+      var card = '<!-- ===== ARTICOLO: ' + esc(titolo) + ' ===== -->\n'
+        + '<article class="blog-card" data-cat="' + catDataAttr + '">\n'
+        + '  <a href="' + fn + '.html" class="blog-card-inner' + hasImage + '">\n'
+        + imgBlock + '\n'
+        + '    <div class="blog-card-text-group">\n'
+        + '      <div class="blog-card-meta">\n'
+        + '        <span class="blog-card-date mono">' + esc(data) + '</span>\n'
+        + catSpans + '\n'
+        + '      </div>\n'
+        + '      <h2 class="blog-card-title">' + esc(titolo) + '</h2>\n'
+        + '      <p class="blog-card-occhiello">' + esc(occh) + '</p>\n'
+        + '    </div>\n'
+        + '    <span class="blog-card-leggi mono">Leggi \u2192</span>\n'
+        + '  </a>\n'
+        + '</article>';
+
+      showOutput('card', 'incolla in blog.html → #blogList', card);
+    }
+
+    /* ============================================================
+       OUTPUT
+       ============================================================ */
+    function showOutput(type, filename, code) {
+      if (type === 'articolo') {
+        document.getElementById('output-articolo-filename').textContent = filename;
+        document.getElementById('instruction-filename').textContent = filename;
+        document.getElementById('code-articolo').textContent = code;
+
+        var fn = filename.replace(/\s.*/,'');
+        var blob = new Blob([code], { type: 'text/html;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var dl = document.getElementById('btn-download-articolo');
+        dl.href = url;
+        dl.download = fn;
+
+        var btn = document.getElementById('btn-copy-articolo');
+        btn.classList.remove('copied');
+        btn.textContent = 'Copia tutto';
+
+        document.getElementById('output-articolo').classList.add('visible');
+        document.getElementById('output-articolo').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        document.getElementById('code-card').textContent = code;
+        var btn2 = document.getElementById('btn-copy-card');
+        btn2.classList.remove('copied');
+        btn2.textContent = 'Copia tutto';
+        document.getElementById('output-card').classList.add('visible');
+        document.getElementById('output-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function copyOutput(type) {
+      var id = type === 'articolo' ? 'code-articolo' : 'code-card';
+      var btnId = type === 'articolo' ? 'btn-copy-articolo' : 'btn-copy-card';
+      var code = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        var btn = document.getElementById(btnId);
+        btn.textContent = 'Copiato ✓';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copia tutto';
+          btn.classList.remove('copied');
+        }, 2500);
+      });
+    }
+
+    /* ============================================================
+       UTILITY
+       ============================================================ */
+    function esc(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
