@@ -1,18 +1,17 @@
 ---
-```yaml
+```markdown
 ---
 titolo: "Unoaventi Design Studio — Sito Web"
-anno: 2024
+anno: null
 tipo: portfolio
 stato: completo
-tags: [sito-web, design-studio, portfolio-digitale, html-css-js, architettura-interni]
+tags: [design-studio, portfolio-online, html-css-js, architettura-interni, allestimenti]
 output: index.html
 disciplina: architettura
 contesto: professionale
 lingua: it
 ---
 
-Sito web del design studio Unoaventi di Andrea Poletti, realizzato in HTML, CSS e JavaScript. Presenta un portfolio completo di progetti di architettura d'interni, design di allestimenti fieristici e articoli di approfondimento professionale.
+Sito web completo dello studio di design Unoaventi di Andrea Poletti, specializzato in architettura d'interni e allestimenti per fiere. La piattaforma integra un portfolio di progetti (SANA, Cosmoprof, ristrutturazioni residenziali), un blog con articoli e interviste, generatori dinamici per progetti e articoli, oltre a sezioni dedicate ai contatti e al profilo dello studio.
 
-La struttura include pagine dedicate ai progetti realizzati (fiere SANA, interni residenziali, allestimenti commerciali), una sezione blog con articoli e interviste, e generatori dinamici per articoli e schede progetto. Gestito con Git e pronto per il deployment online.
-```
+Repository Git attivo con versionamento completo della storia di sviluppo. Include asset grafici ottimizzati (WebP per le immagini hero e progetti), stylesheet modulari organizzati per pagina, e JavaScript per la gestione dinamica dei contenuti e dei generatori di pagine.
